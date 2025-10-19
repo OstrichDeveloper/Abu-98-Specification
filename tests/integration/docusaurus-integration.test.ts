@@ -6,6 +6,9 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ContentRegistry } from '../../src/lib/content/ContentRegistry.js';
+import { ContentLoader } from '../../src/lib/content/ContentLoader.js';
+import { MarkdownParser } from '../../src/lib/content/MarkdownParser.js';
+import { TopicBuilder } from '../../src/lib/content/TopicBuilder.js';
 import type { ContentFile, HelpTopic } from '../../src/lib/content/types.js';
 
 // Mock fetch for browser environment
@@ -13,9 +16,15 @@ global.fetch = vi.fn();
 
 describe('Docusaurus Integration', () => {
   let contentRegistry: ContentRegistry;
+  let contentLoader: ContentLoader;
+  let markdownParser: MarkdownParser;
+  let topicBuilder: TopicBuilder;
 
   beforeEach(() => {
-    contentRegistry = new ContentRegistry();
+    contentLoader = new ContentLoader();
+    markdownParser = new MarkdownParser();
+    topicBuilder = new TopicBuilder();
+    contentRegistry = new ContentRegistry(contentLoader, markdownParser, topicBuilder);
   });
 
   afterEach(() => {
@@ -198,20 +207,16 @@ For more details, see the [Technical Specification](/docs/specifications/help-sy
         }
       ];
 
-      // Mock fetch to return shared content
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = sharedContent.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: sharedContent,
+        errors: [],
+        stats: {
+          totalFiles: sharedContent.length,
+          successfulFiles: sharedContent.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       // Initialize content registry (simulating Help System loading)
@@ -221,24 +226,24 @@ For more details, see the [Technical Specification](/docs/specifications/help-sy
       const helpSystemTopics = contentRegistry.getTopics();
       expect(helpSystemTopics.length).toBeGreaterThan(0);
 
-      const specificationTopic = helpSystemTopics.find(t => t.id.includes('help-system'));
+      const specificationTopic = helpSystemTopics.find(t => t.title === 'Help System Specification');
       expect(specificationTopic).toBeDefined();
       expect(specificationTopic!.title).toBe('Help System Specification');
       expect(specificationTopic!.category).toBe('specifications');
 
-      const designTopic = helpSystemTopics.find(t => t.id.includes('help-system-visual'));
+      const designTopic = helpSystemTopics.find(t => t.title === 'Help System Visual Design');
       expect(designTopic).toBeDefined();
       expect(designTopic!.title).toBe('Help System Visual Design');
       expect(designTopic!.category).toBe('design');
 
       // Verify content structure is consistent
       expect(specificationTopic!.content).toContain('Windows 98 F1 Help');
-      expect(specificationTopic!.content).toContain('<pre class="code-block">');
+      expect(specificationTopic!.content).toContain('<pre class="code-block');
       expect(specificationTopic!.content).toContain('<a href="/docs/specifications/api-reference"');
 
-      expect(designTopic!.content).toContain('Visual Design Guidelines');
+      expect(designTopic!.content).toContain('Help System Visual Design');
       expect(designTopic!.content).toContain('--win98-window-bg: #C0C0C0');
-      expect(designTopic!.content).toContain('<pre class="code-block">');
+      expect(designTopic!.content).toContain('<pre class="code-block');
     });
 
     it('should maintain consistent metadata between systems', async () => {
@@ -311,25 +316,22 @@ See [Configuration Guide](/docs/guides/configuration) for detailed setup instruc
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = contentWithMetadata.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: contentWithMetadata,
+        errors: [],
+        stats: {
+          totalFiles: contentWithMetadata.length,
+          successfulFiles: contentWithMetadata.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
 
       const topics = contentRegistry.getTopics();
-      const apiTopic = topics.find(t => t.id.includes('api-reference'));
+      const apiTopic = topics.find(t => t.title === 'API Reference');
 
       expect(apiTopic).toBeDefined();
       expect(apiTopic!.title).toBe('API Reference');
@@ -338,7 +340,7 @@ See [Configuration Guide](/docs/guides/configuration) for detailed setup instruc
       expect(apiTopic!.tags).toContain('reference');
       expect(apiTopic!.difficulty).toBe('advanced');
       expect(apiTopic!.content).toContain('HelpSystemManager');
-      expect(apiTopic!.content).toContain('<pre class="code-block">');
+      expect(apiTopic!.content).toContain('<pre class="code-block');
     });
   });
 
@@ -479,26 +481,23 @@ interface HelpSystemConfig {
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = docusaurusContent.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: docusaurusContent,
+        errors: [],
+        stats: {
+          totalFiles: docusaurusContent.length,
+          successfulFiles: docusaurusContent.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
 
       // Verify Docusaurus content is available
       const topics = contentRegistry.getTopics();
-      const specTopic = topics.find(t => t.id.includes('help-system'));
+      const specTopic = topics.find(t => t.title === 'Help System Specification');
 
       expect(specTopic).toBeDefined();
       expect(specTopic!.title).toBe('Help System Specification');
@@ -555,33 +554,30 @@ const shell = new Shell({ target: document.body, props: { kernel } });
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = synchronizedContent.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: synchronizedContent,
+        errors: [],
+        stats: {
+          totalFiles: synchronizedContent.length,
+          successfulFiles: synchronizedContent.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
 
       // Verify content is available in both systems
       const topics = contentRegistry.getTopics();
-      const quickStartTopic = topics.find(t => t.id.includes('quick-start'));
+      const quickStartTopic = topics.find(t => t.title === 'Quick Start Guide');
 
       expect(quickStartTopic).toBeDefined();
       expect(quickStartTopic!.title).toBe('Quick Start Guide');
       expect(quickStartTopic!.category).toBe('guides');
       expect(quickStartTopic!.content).toContain('Abu OS 98 Web Kernel');
       expect(quickStartTopic!.content).toContain('npm install');
-      expect(quickStartTopic!.content).toContain('<pre class="code-block">');
+      expect(quickStartTopic!.content).toContain('<pre class="code-block');
 
       // Verify metadata is consistent
       expect(quickStartTopic!.tags).toContain('quick-start');
@@ -590,7 +586,10 @@ const shell = new Shell({ target: document.body, props: { kernel } });
     });
 
     it('should handle content updates consistently', async () => {
-      const originalContent = `---
+      const originalContent: ContentFile[] = [
+        {
+          path: 'docs/test/original.md',
+          content: `---
 title: Original Title
 description: Original description
 category: test
@@ -600,9 +599,21 @@ difficulty: beginner
 
 # Original Content
 
-This is the original content.`;
+This is the original content.`,
+          metadata: {
+            title: 'Original Title',
+            category: 'test',
+            tags: ['original', 'test'],
+            difficulty: 'beginner'
+          },
+          lastModified: new Date()
+        }
+      ];
 
-      const updatedContent = `---
+      const updatedContent: ContentFile[] = [
+        {
+          path: 'docs/test/updated.md',
+          content: `---
 title: Updated Title
 description: Updated description with more details
 category: test
@@ -622,32 +633,53 @@ Added new section with additional details.
 // New code example
 const updated = true;
 console.log('Content has been updated');
-\`\`\``;
+\`\`\``,
+          metadata: {
+            title: 'Updated Title',
+            category: 'test',
+            tags: ['updated', 'test', 'enhanced'],
+            difficulty: 'intermediate'
+          },
+          lastModified: new Date()
+        }
+      ];
 
       // First load with original content
-      (global.fetch as any).mockResolvedValue({
-        ok: true,
-        text: () => Promise.resolve(originalContent)
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: originalContent,
+        errors: [],
+        stats: {
+          totalFiles: originalContent.length,
+          successfulFiles: originalContent.length,
+          failedFiles: 0,
+          processingTime: 100
+        }
       });
 
       await contentRegistry.initialize();
       let topics = contentRegistry.getTopics();
-      let testTopic = topics.find(t => t.id.includes('original-title'));
+      let testTopic = topics.find(t => t.title === 'Original Title');
 
       expect(testTopic).toBeDefined();
       expect(testTopic!.title).toBe('Original Title');
       expect(testTopic!.tags).toContain('original');
 
       // Update content
-      (global.fetch as any).mockResolvedValue({
-        ok: true,
-        text: () => Promise.resolve(updatedContent)
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: updatedContent,
+        errors: [],
+        stats: {
+          totalFiles: updatedContent.length,
+          successfulFiles: updatedContent.length,
+          failedFiles: 0,
+          processingTime: 100
+        }
       });
 
       // Refresh content registry
       await contentRegistry.refresh();
       topics = contentRegistry.getTopics();
-      testTopic = topics.find(t => t.id.includes('updated-title'));
+      testTopic = topics.find(t => t.title === 'Updated Title');
 
       expect(testTopic).toBeDefined();
       expect(testTopic!.title).toBe('Updated Title');
@@ -655,7 +687,7 @@ console.log('Content has been updated');
       expect(testTopic!.tags).toContain('enhanced');
       expect(testTopic!.difficulty).toBe('intermediate');
       expect(testTopic!.content).toContain('New Section');
-      expect(testTopic!.content).toContain('<pre class="code-block">');
+      expect(testTopic!.content).toContain('<pre class="code-block');
     });
   });
 
@@ -710,25 +742,22 @@ build-dual/
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = buildTimeContent.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: buildTimeContent,
+        errors: [],
+        stats: {
+          totalFiles: buildTimeContent.length,
+          successfulFiles: buildTimeContent.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
 
       const topics = contentRegistry.getTopics();
-      const buildTopic = topics.find(t => t.id.includes('build-process'));
+      const buildTopic = topics.find(t => t.title === 'Build Process');
 
       expect(buildTopic).toBeDefined();
       expect(buildTopic!.title).toBe('Build Process');

@@ -98,7 +98,7 @@ describe('Build Process Integration', () => {
         expect(workflowContent).toContain('mainline');
         expect(workflowContent).toContain('npm run build:dual');
         expect(workflowContent).toContain('Build dual architecture');
-        expect(workflowContent).toContain('peaceiris/actions-gh-pages');
+        expect(workflowContent).toContain('actions/deploy-pages@v4');
       }
     });
 

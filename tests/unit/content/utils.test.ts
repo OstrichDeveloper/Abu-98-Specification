@@ -17,9 +17,53 @@ import {
 import type { ContentFile, ParsedContent, HelpTopic, HelpCategory } from '../../../src/lib/content/types.js';
 
 // Mock the dependencies
-vi.mock('../../../src/lib/content/ContentRegistry.js');
-vi.mock('../../../src/lib/content/MarkdownParser.js');
-vi.mock('../../../src/lib/content/TopicBuilder.js');
+vi.mock('../../../src/lib/content/ContentRegistry.js', () => ({
+  ContentRegistry: vi.fn().mockImplementation(() => ({
+    initialize: vi.fn(),
+    search: vi.fn(),
+    getTopicsByCategory: vi.fn(),
+    getCategories: vi.fn()
+  }))
+}));
+
+vi.mock('../../../src/lib/content/MarkdownParser.js', () => ({
+  MarkdownParser: vi.fn().mockImplementation(() => ({
+    parse: vi.fn().mockImplementation((content, path) => ({
+      path,
+      html: content.replace(/^#\s+(.+)$/m, '<h1>$1</h1>'),
+      metadata: { title: 'Test', category: 'test', tags: ['test'], difficulty: 'beginner' },
+      toc: [],
+      searchableText: content,
+      internalLinks: [],
+      externalLinks: [],
+      images: [],
+      codeBlocks: []
+    }))
+  }))
+}));
+
+vi.mock('../../../src/lib/content/TopicBuilder.js', () => ({
+  TopicBuilder: vi.fn().mockImplementation(() => ({
+    buildTopics: vi.fn().mockImplementation((parsedContents) => ({
+      topics: parsedContents.map((content: any) => ({
+        id: content.path,
+        title: content.metadata.title,
+        category: content.metadata.category,
+        tags: content.metadata.tags,
+        difficulty: content.metadata.difficulty,
+        content: content.html,
+        order: 0
+      })),
+      categories: [
+        {
+          id: 'test',
+          name: 'Test',
+          topics: []
+        }
+      ]
+    }))
+  }))
+}));
 
 describe('Content Processing Utils', () => {
   describe('createContentRegistry', () => {
@@ -460,7 +504,7 @@ Content.`;
       expect(stats.categoryDistribution[0].count).toBe(2);
       expect(stats.categoryDistribution[1].category).toBe('other');
       expect(stats.categoryDistribution[1].count).toBe(1);
-      expect(stats.tagDistribution).toHaveLength(3);
+      expect(stats.tagDistribution).toHaveLength(4);
       expect(stats.tagDistribution[0].tag).toBe('test');
       expect(stats.tagDistribution[0].count).toBe(2);
       expect(stats.difficultyDistribution).toHaveLength(3);

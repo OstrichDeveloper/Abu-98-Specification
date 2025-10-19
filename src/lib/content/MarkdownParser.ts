@@ -4,6 +4,7 @@
  * Parses markdown content into HTML with Windows 98 Help System styling
  */
 
+import markdownWasm from 'markdown-wasm';
 import type {
   ParsedContent,
   TableOfContentsItem,
@@ -88,32 +89,46 @@ export class MarkdownParser {
     const stack: TableOfContentsItem[] = [];
 
     for (const line of lines) {
-      const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
-      if (headingMatch) {
-        const level = headingMatch[1].length;
-        const text = headingMatch[2].trim();
-        const id = this.generateHeadingId(text);
-
-        if (level <= this.options.maxTocLevel) {
-          const item: TableOfContentsItem = {
-            level,
-            text,
-            id,
-            children: []
-          };
-
-          // Find the correct parent in the stack
-          while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-            stack.pop();
-          }
-
-          if (stack.length === 0) {
-            toc.push(item);
+      // Check if line starts with # characters (heading)
+      if (line.startsWith('#')) {
+        let level = 0;
+        let text = '';
+        
+        // Count # characters to determine level
+        for (let i = 0; i < line.length; i++) {
+          if (line[i] === '#') {
+            level++;
           } else {
-            stack[stack.length - 1].children.push(item);
+            break;
           }
+        }
+        
+        // Extract text after # characters and whitespace
+        if (level > 0 && level <= 6) {
+          text = line.substring(level).trim();
+          const id = this.generateHeadingId(text);
 
-          stack.push(item);
+          if (level <= this.options.maxTocLevel) {
+            const item: TableOfContentsItem = {
+              level,
+              text,
+              id,
+              children: []
+            };
+
+            // Find the correct parent in the stack
+            while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+              stack.pop();
+            }
+
+            if (stack.length === 0) {
+              toc.push(item);
+            } else {
+              stack[stack.length - 1].children.push(item);
+            }
+
+            stack.push(item);
+          }
         }
       }
     }
@@ -127,82 +142,32 @@ export class MarkdownParser {
   private generateHeadingId(text: string): string {
     return text
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim();
+      .split('')
+      .map(char => {
+        if (char >= 'a' && char <= 'z') return char;
+        if (char >= '0' && char <= '9') return char;
+        if (char === ' ') return '-';
+        if (char === '-') return '-';
+        return '';
+      })
+      .join('')
+      .split('-')
+      .filter(part => part.length > 0)
+      .join('-');
   }
 
   /**
-   * Parse markdown to HTML
+   * Parse markdown to HTML using markdown-wasm
    */
   private parseMarkdownToHtml(content: string): string {
-    let html = content;
-
-    // Convert headings
-    html = html.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text) => {
-      const level = hashes.length;
-      const id = this.generateHeadingId(text);
-      return `<h${level} id="${id}">${text}</h${level}>`;
+    // Use markdown-wasm to parse markdown to HTML
+    const html = markdownWasm.parse(content, {
+      format: 'html',
+      parseFlags: markdownWasm.ParseFlags.DEFAULT
     });
-
-    // Convert bold text
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-
-    // Convert italic text
-    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-
-    // Convert inline code
-    html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-
-    // Convert code blocks
-    html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, language, code) => {
-      const lang = language || 'text';
-      const highlightedCode = this.options.highlightCode ? 
-        this.highlightCode(code, lang) : 
-        this.escapeHtml(code);
-      return `<pre class="code-block"><code class="language-${lang}">${highlightedCode}</code></pre>`;
-    });
-
-    // Convert blockquotes
-    html = html.replace(/^>\s*(.+)$/gm, '<blockquote class="help-blockquote">$1</blockquote>');
-
-    // Convert unordered lists
-    html = html.replace(/^[\s]*[-*+]\s+(.+)$/gm, '<li class="help-list-item">$1</li>');
-    html = html.replace(/(<li class="help-list-item">.*<\/li>)/s, '<ul class="help-list">$1</ul>');
-
-    // Convert ordered lists
-    html = html.replace(/^[\s]*\d+\.\s+(.+)$/gm, '<li class="help-list-item">$1</li>');
-    html = html.replace(/(<li class="help-list-item">.*<\/li>)/s, '<ol class="help-list">$1</ol>');
-
-    // Convert links
-    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
-      const isExternal = this.isExternalLink(url);
-      const className = isExternal ? 'help-link external' : 'help-link internal';
-      const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-      return `<a href="${url}" class="${className}"${target}>${text}</a>`;
-    });
-
-    // Convert images
-    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, src) => {
-      return `<img src="${src}" alt="${alt}" class="help-image" />`;
-    });
-
-    // Convert horizontal rules
-    html = html.replace(/^---$/gm, '<hr class="help-hr" />');
-
-    // Convert paragraphs
-    html = html.replace(/^(?!<[h1-6]|<ul|<ol|<li|<blockquote|<pre|<hr)(.+)$/gm, '<p class="help-paragraph">$1</p>');
-
-    // Clean up empty paragraphs
-    html = html.replace(/<p class="help-paragraph"><\/p>/g, '');
 
     // Add Windows 98 Help System styling classes
-    html = this.addHelpSystemStyling(html);
-
-    return html;
+    return this.addHelpSystemStyling(html);
   }
 
   /**
@@ -210,130 +175,47 @@ export class MarkdownParser {
    */
   private addHelpSystemStyling(html: string): string {
     // Add help system container
-    html = `<div class="help-content win98-help-content">${html}</div>`;
+    let styledHtml = `<div class="help-content win98-help-content">${html}</div>`;
 
-    // Add specific styling for help system elements
-    html = html.replace(/<h([1-6])/g, '<h$1 class="help-heading help-heading-$1"');
-    html = html.replace(/<p class="help-paragraph"/g, '<p class="help-paragraph win98-text"');
-    html = html.replace(/<ul class="help-list"/g, '<ul class="help-list win98-list"');
-    html = html.replace(/<ol class="help-list"/g, '<ol class="help-list win98-list"');
-    html = html.replace(/<li class="help-list-item"/g, '<li class="help-list-item win98-list-item"');
-    html = html.replace(/<blockquote class="help-blockquote"/g, '<blockquote class="help-blockquote win98-blockquote"');
-    html = html.replace(/<pre class="code-block"/g, '<pre class="code-block win98-code-block"');
-    html = html.replace(/<code class="inline-code"/g, '<code class="inline-code win98-inline-code"');
-
-    return html;
-  }
-
-  /**
-   * Highlight code syntax (basic implementation)
-   */
-  private highlightCode(code: string, language: string): string {
-    // Basic syntax highlighting for common languages
-    const escapedCode = this.escapeHtml(code);
+    // Add specific styling for help system elements using string replacement
+    styledHtml = styledHtml.split('<h1').join('<h1 class="help-heading help-heading-1"');
+    styledHtml = styledHtml.split('<h2').join('<h2 class="help-heading help-heading-2"');
+    styledHtml = styledHtml.split('<h3').join('<h3 class="help-heading help-heading-3"');
+    styledHtml = styledHtml.split('<h4').join('<h4 class="help-heading help-heading-4"');
+    styledHtml = styledHtml.split('<h5').join('<h5 class="help-heading help-heading-5"');
+    styledHtml = styledHtml.split('<h6').join('<h6 class="help-heading help-heading-6"');
     
-    if (language === 'javascript' || language === 'js') {
-      return this.highlightJavaScript(escapedCode);
-    } else if (language === 'typescript' || language === 'ts') {
-      return this.highlightTypeScript(escapedCode);
-    } else if (language === 'html') {
-      return this.highlightHtml(escapedCode);
-    } else if (language === 'css') {
-      return this.highlightCss(escapedCode);
-    } else if (language === 'json') {
-      return this.highlightJson(escapedCode);
-    }
-    
-    return escapedCode;
+    styledHtml = styledHtml.split('<p>').join('<p class="help-paragraph win98-text">');
+    styledHtml = styledHtml.split('<ul>').join('<ul class="help-list win98-list">');
+    styledHtml = styledHtml.split('<ol>').join('<ol class="help-list win98-list">');
+    styledHtml = styledHtml.split('<li>').join('<li class="help-list-item win98-list-item">');
+    styledHtml = styledHtml.split('<blockquote>').join('<blockquote class="help-blockquote win98-blockquote">');
+    styledHtml = styledHtml.split('<pre>').join('<pre class="code-block win98-code-block">');
+    styledHtml = styledHtml.split('<code>').join('<code class="inline-code win98-inline-code">');
+
+    return styledHtml;
   }
 
-  /**
-   * Basic JavaScript highlighting
-   */
-  private highlightJavaScript(code: string): string {
-    return code
-      .replace(/\b(const|let|var|function|return|if|else|for|while|class|import|export|from|default)\b/g, '<span class="keyword">$1</span>')
-      .replace(/\b(true|false|null|undefined)\b/g, '<span class="literal">$1</span>')
-      .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>')
-      .replace(/'([^']*)'/g, '<span class="string">\'$1\'</span>')
-      .replace(/\/\/.*$/gm, '<span class="comment">$&</span>');
-  }
-
-  /**
-   * Basic TypeScript highlighting
-   */
-  private highlightTypeScript(code: string): string {
-    return code
-      .replace(/\b(const|let|var|function|return|if|else|for|while|class|import|export|from|default|interface|type|enum)\b/g, '<span class="keyword">$1</span>')
-      .replace(/\b(true|false|null|undefined)\b/g, '<span class="literal">$1</span>')
-      .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>')
-      .replace(/'([^']*)'/g, '<span class="string">\'$1\'</span>')
-      .replace(/\/\/.*$/gm, '<span class="comment">$&</span>');
-  }
-
-  /**
-   * Basic HTML highlighting
-   */
-  private highlightHtml(code: string): string {
-    return code
-      .replace(/&lt;(\/?[^&]+)&gt;/g, '<span class="tag">&lt;$1&gt;</span>')
-      .replace(/(\w+)=/g, '<span class="attribute">$1</span>=')
-      .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>');
-  }
-
-  /**
-   * Basic CSS highlighting
-   */
-  private highlightCss(code: string): string {
-    return code
-      .replace(/([.#]?[\w-]+)\s*{/g, '<span class="selector">$1</span> {')
-      .replace(/(\w+):/g, '<span class="property">$1</span>:')
-      .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>');
-  }
-
-  /**
-   * Basic JSON highlighting
-   */
-  private highlightJson(code: string): string {
-    return code
-      .replace(/"([^"]*)":/g, '<span class="key">"$1"</span>:')
-      .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>')
-      .replace(/\b(true|false|null)\b/g, '<span class="literal">$1</span>');
-  }
-
-  /**
-   * Escape HTML characters
-   */
-  private escapeHtml(text: string): string {
-    return text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
 
   /**
    * Extract searchable text from content
    */
   private extractSearchableText(content: string): string {
-    // Remove markdown syntax and extract plain text
-    let text = content
-      .replace(/^#{1,6}\s+/gm, '') // Remove heading markers
-      .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold markers
-      .replace(/__(.*?)__/g, '$1') // Remove bold markers
-      .replace(/\*(.*?)\*/g, '$1') // Remove italic markers
-      .replace(/_(.*?)_/g, '$1') // Remove italic markers
-      .replace(/`([^`]+)`/g, '$1') // Remove inline code markers
-      .replace(/```[\s\S]*?```/g, '') // Remove code blocks
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove link syntax, keep text
-      .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1') // Remove image syntax, keep alt text
-      .replace(/^>\s*/gm, '') // Remove blockquote markers
-      .replace(/^[-*+]\s+/gm, '') // Remove list markers
-      .replace(/^\d+\.\s+/gm, '') // Remove numbered list markers
-      .replace(/^---$/gm, '') // Remove horizontal rules
-      .replace(/\n+/g, ' ') // Replace newlines with spaces
-      .trim();
+    // Parse markdown to HTML first, then extract text content
+    const html = markdownWasm.parse(content, {
+      format: 'html',
+      parseFlags: markdownWasm.ParseFlags.DEFAULT
+    });
+    
+    // Simple HTML tag removal for text extraction
+    let text = html
+      .split('<')
+      .map(part => part.includes('>') ? part.split('>').slice(1).join('>') : part)
+      .join('')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .join(' ');
 
     return text;
   }
@@ -345,16 +227,26 @@ export class MarkdownParser {
     const internalLinks: string[] = [];
     const externalLinks: string[] = [];
 
-    const linkMatches = content.match(/\[([^\]]+)\]\(([^)]+)\)/g);
-    if (linkMatches) {
-      for (const match of linkMatches) {
-        const urlMatch = match.match(/\[([^\]]+)\]\(([^)]+)\)/);
-        if (urlMatch) {
-          const url = urlMatch[2];
-          if (this.isExternalLink(url)) {
-            externalLinks.push(url);
-          } else {
-            internalLinks.push(url);
+    // Parse to HTML and extract links from href attributes
+    const html = markdownWasm.parse(content, {
+      format: 'html',
+      parseFlags: markdownWasm.ParseFlags.DEFAULT
+    });
+
+    // Extract href attributes from anchor tags
+    const lines = html.split('\n');
+    for (const line of lines) {
+      if (line.includes('<a href=')) {
+        const hrefStart = line.indexOf('href="');
+        if (hrefStart !== -1) {
+          const hrefEnd = line.indexOf('"', hrefStart + 6);
+          if (hrefEnd !== -1) {
+            const url = line.substring(hrefStart + 6, hrefEnd);
+            if (this.isExternalLink(url)) {
+              externalLinks.push(url);
+            } else {
+              internalLinks.push(url);
+            }
           }
         }
       }
@@ -378,17 +270,48 @@ export class MarkdownParser {
    */
   private extractImages(content: string): ContentImage[] {
     const images: ContentImage[] = [];
-    const imageMatches = content.match(/!\[([^\]]*)\]\(([^)]+)\)/g);
 
-    if (imageMatches) {
-      for (const match of imageMatches) {
-        const imageMatch = match.match(/!\[([^\]]*)\]\(([^)]+)\)/);
-        if (imageMatch) {
-          images.push({
-            src: imageMatch[2],
-            alt: imageMatch[1] || '',
-            title: imageMatch[1] || undefined
-          });
+    // Parse to HTML and extract images from img tags
+    const html = markdownWasm.parse(content, {
+      format: 'html',
+      parseFlags: markdownWasm.ParseFlags.DEFAULT
+    });
+
+    // Extract src and alt attributes from img tags
+    const lines = html.split('\n');
+    for (const line of lines) {
+      if (line.includes('<img')) {
+        const srcStart = line.indexOf('src="');
+        const altStart = line.indexOf('alt="');
+        const titleStart = line.indexOf('title="');
+        
+        let src = '';
+        let alt = '';
+        let title: string | undefined = undefined;
+        
+        if (srcStart !== -1) {
+          const srcEnd = line.indexOf('"', srcStart + 5);
+          if (srcEnd !== -1) {
+            src = line.substring(srcStart + 5, srcEnd);
+          }
+        }
+        
+        if (altStart !== -1) {
+          const altEnd = line.indexOf('"', altStart + 5);
+          if (altEnd !== -1) {
+            alt = line.substring(altStart + 5, altEnd);
+          }
+        }
+        
+        if (titleStart !== -1) {
+          const titleEnd = line.indexOf('"', titleStart + 7);
+          if (titleEnd !== -1) {
+            title = line.substring(titleStart + 7, titleEnd);
+          }
+        }
+        
+        if (src) {
+          images.push({ src, alt, title });
         }
       }
     }
@@ -401,17 +324,34 @@ export class MarkdownParser {
    */
   private extractCodeBlocks(content: string): CodeBlock[] {
     const codeBlocks: CodeBlock[] = [];
-    const codeMatches = content.match(/```(\w+)?\n([\s\S]*?)```/g);
-
-    if (codeMatches) {
-      for (const match of codeMatches) {
-        const codeMatch = match.match(/```(\w+)?\n([\s\S]*?)```/);
-        if (codeMatch) {
-          codeBlocks.push({
-            language: codeMatch[1] || 'text',
-            code: codeMatch[2].trim()
-          });
+    const lines = content.split('\n');
+    let inCodeBlock = false;
+    let currentCode = '';
+    let currentLanguage = 'text';
+    
+    for (const line of lines) {
+      // Check for code block start
+      if (line.startsWith('```')) {
+        if (inCodeBlock) {
+          // End of code block
+          inCodeBlock = false;
+          if (currentCode.trim()) {
+            codeBlocks.push({
+              language: currentLanguage,
+              code: currentCode.trim()
+            });
+          }
+          currentCode = '';
+          currentLanguage = 'text';
+        } else {
+          // Start of code block
+          inCodeBlock = true;
+          const language = line.substring(3).trim();
+          currentLanguage = language || 'text';
+          currentCode = '';
         }
+      } else if (inCodeBlock) {
+        currentCode += line + '\n';
       }
     }
 
@@ -422,13 +362,39 @@ export class MarkdownParser {
    * Extract metadata from content (basic implementation)
    */
   private extractMetadata(content: string): any {
-    // This is a basic implementation - in a real scenario,
-    // you'd want to extract more comprehensive metadata
-    return {
-      wordCount: content.split(/\s+/).length,
-      hasCodeBlocks: /```/.test(content),
-      hasImages: /!\[/.test(content),
-      hasLinks: /\[.*?\]\(/.test(content)
-    };
+    const metadata: any = {};
+    
+    // Extract frontmatter if present
+    const lines = content.split('\n');
+    if (lines[0] === '---') {
+      const endIndex = lines.findIndex((line, index) => index > 0 && line === '---');
+      if (endIndex > 0) {
+        const frontmatterLines = lines.slice(1, endIndex);
+        for (const line of frontmatterLines) {
+          const match = line.match(/^(\w+):\s*(.+)$/);
+          if (match) {
+            const [, key, value] = match;
+            // Parse arrays
+            if (value.startsWith('[') && value.endsWith(']')) {
+              metadata[key] = value
+                .slice(1, -1)
+                .split(',')
+                .map(v => v.trim())
+                .filter(v => v.length > 0);
+            } else {
+              metadata[key] = value;
+            }
+          }
+        }
+      }
+    }
+    
+    // Add computed metadata
+    metadata.wordCount = content.split(/\s+/).length;
+    metadata.hasCodeBlocks = /```/.test(content);
+    metadata.hasImages = /!\[/.test(content);
+    metadata.hasLinks = /\[.*?\]\(/.test(content);
+    
+    return metadata;
   }
 }

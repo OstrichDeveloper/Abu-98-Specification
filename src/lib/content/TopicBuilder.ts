@@ -105,7 +105,7 @@ export class TopicBuilder {
   /**
    * Generate ID from file path
    */
-  private generateIdFromPath(path: string): string {
+  public generateIdFromPath(path: string): string {
     return path
       .replace(/\.(md|mdx)$/, '')
       .replace(/\//g, '-')

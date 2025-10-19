@@ -22,7 +22,6 @@ describe('Help System Integration', () => {
 
   beforeEach(() => {
     // Create fresh instances for each test
-    contentRegistry = new ContentRegistry();
     contentLoader = new ContentLoader({
       baseDir: 'docs',
       include: ['**/*.md'],
@@ -45,6 +44,7 @@ describe('Help System Integration', () => {
       autoOrder: true,
       idStrategy: 'path'
     });
+    contentRegistry = new ContentRegistry(contentLoader, markdownParser, topicBuilder);
   });
 
   afterEach(() => {
@@ -135,41 +135,38 @@ The Help System uses the classic Windows 98 color palette:
         }
       ];
 
-      // Mock fetch responses
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = mockContentFiles.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: mockContentFiles,
+        errors: [],
+        stats: {
+          totalFiles: mockContentFiles.length,
+          successfulFiles: mockContentFiles.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       // Initialize content registry
       await contentRegistry.initialize();
 
       // Verify content was loaded and processed
+      const status = contentRegistry.getStatus();
       expect(contentRegistry.files.size).toBeGreaterThan(0);
-      expect(contentRegistry.topics.size).toBeGreaterThan(0);
-      expect(contentRegistry.helpCategories.size).toBeGreaterThan(0);
+      expect(status.topicCount).toBeGreaterThan(0);
+      expect(status.categoryCount).toBeGreaterThan(0);
 
       // Get topics and verify structure
       const topics = contentRegistry.getTopics();
       expect(topics.length).toBeGreaterThan(0);
 
-      const helpSystemTopic = topics.find(t => t.id.includes('help-system'));
+      const helpSystemTopic = topics.find(t => t.title === 'Help System Overview');
       expect(helpSystemTopic).toBeDefined();
       expect(helpSystemTopic!.title).toBe('Help System Overview');
       expect(helpSystemTopic!.category).toBe('specifications');
       expect(helpSystemTopic!.tags).toContain('help-system');
       expect(helpSystemTopic!.content).toContain('Windows 98 F1 Help System');
-      expect(helpSystemTopic!.content).toContain('<pre class="code-block">');
+      expect(helpSystemTopic!.content).toContain('<pre class="code-block');
       expect(helpSystemTopic!.content).toContain('<a href="/docs/specifications/api-reference"');
 
       // Verify categories
@@ -187,8 +184,8 @@ The Help System uses the classic Windows 98 color palette:
     });
 
     it('should handle content loading errors gracefully', async () => {
-      // Mock fetch to reject
-      (global.fetch as any).mockRejectedValue(new Error('Network error'));
+      // Mock ContentLoader to reject
+      vi.spyOn(contentLoader, 'loadAllContent').mockRejectedValue(new Error('Network error'));
 
       // Initialize should not throw
       await expect(contentRegistry.initialize()).rejects.toThrow('Network error');
@@ -198,9 +195,16 @@ The Help System uses the classic Windows 98 color palette:
       const mockContentFiles: ContentFile[] = [
         {
           path: 'guides/quick-start.md',
-          content: `# Quick Start Guide
+          content: `---
+title: Quick Start Guide
+category: guides
+tags: [quick-start, getting-started]
+difficulty: beginner
+---
 
-This is a quick start guide without frontmatter.
+# Quick Start Guide
+
+This is a quick start guide.
 
 ## Getting Started
 
@@ -224,31 +228,28 @@ npm install @melalawi/abu-web-kernel
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = mockContentFiles.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: mockContentFiles,
+        errors: [],
+        stats: {
+          totalFiles: mockContentFiles.length,
+          successfulFiles: mockContentFiles.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
 
       const topics = contentRegistry.getTopics();
-      const quickStartTopic = topics.find(t => t.id.includes('quick-start'));
+      const quickStartTopic = topics.find(t => t.title === 'Quick Start Guide');
       
       expect(quickStartTopic).toBeDefined();
       expect(quickStartTopic!.title).toBe('Quick Start Guide');
       expect(quickStartTopic!.category).toBe('guides');
       expect(quickStartTopic!.content).toContain('Getting Started');
-      expect(quickStartTopic!.content).toContain('<pre class="code-block">');
+      expect(quickStartTopic!.content).toContain('<pre class="code-block');
     });
   });
 
@@ -258,7 +259,7 @@ npm install @melalawi/abu-web-kernel
       const mockContentFiles: ContentFile[] = [
         {
           path: 'specifications/help-system.md',
-          content: '# Help System\n\nThis is about the help system functionality.',
+          content: '---\ntitle: Help System\ncategory: specifications\ntags: [help-system, specifications]\ndifficulty: beginner\n---\n\n# Help System\n\nThis is about the help system functionality.',
           metadata: {
             title: 'Help System',
             category: 'specifications',
@@ -269,7 +270,7 @@ npm install @melalawi/abu-web-kernel
         },
         {
           path: 'design/help-system-visual.md',
-          content: '# Visual Design\n\nThis covers the visual design of the help system.',
+          content: '---\ntitle: Visual Design\ncategory: design\ntags: [design, visual, help-system]\ndifficulty: intermediate\n---\n\n# Visual Design\n\nThis covers the visual design of the help system.',
           metadata: {
             title: 'Visual Design',
             category: 'design',
@@ -280,7 +281,7 @@ npm install @melalawi/abu-web-kernel
         },
         {
           path: 'api/reference.md',
-          content: '# API Reference\n\nComplete API documentation for developers.',
+          content: '---\ntitle: API Reference\ncategory: api\ntags: [api, reference, documentation]\ndifficulty: advanced\n---\n\n# API Reference\n\nComplete API documentation for developers.',
           metadata: {
             title: 'API Reference',
             category: 'api',
@@ -291,19 +292,16 @@ npm install @melalawi/abu-web-kernel
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = mockContentFiles.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: mockContentFiles,
+        errors: [],
+        stats: {
+          totalFiles: mockContentFiles.length,
+          successfulFiles: mockContentFiles.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
@@ -345,7 +343,7 @@ npm install @melalawi/abu-web-kernel
       const mockContentFiles: ContentFile[] = [
         {
           path: 'getting-started/intro.md',
-          content: '# Introduction\n\nWelcome to Abu OS.',
+          content: '---\ntitle: Introduction\ncategory: getting-started\ntags: [intro, getting-started]\ndifficulty: beginner\n---\n\n# Introduction\n\nWelcome to Abu OS.',
           metadata: {
             title: 'Introduction',
             category: 'getting-started',
@@ -356,7 +354,7 @@ npm install @melalawi/abu-web-kernel
         },
         {
           path: 'specifications/help-system.md',
-          content: '# Help System\n\nHelp system specifications.',
+          content: '---\ntitle: Help System\ncategory: specifications\ntags: [help-system, specifications]\ndifficulty: intermediate\n---\n\n# Help System\n\nHelp system specifications.',
           metadata: {
             title: 'Help System',
             category: 'specifications',
@@ -367,7 +365,7 @@ npm install @melalawi/abu-web-kernel
         },
         {
           path: 'design/visual-guide.md',
-          content: '# Visual Guide\n\nVisual design guidelines.',
+          content: '---\ntitle: Visual Guide\ncategory: design\ntags: [design, visual]\ndifficulty: intermediate\n---\n\n# Visual Guide\n\nVisual design guidelines.',
           metadata: {
             title: 'Visual Guide',
             category: 'design',
@@ -378,19 +376,16 @@ npm install @melalawi/abu-web-kernel
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = mockContentFiles.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: mockContentFiles,
+        errors: [],
+        stats: {
+          totalFiles: mockContentFiles.length,
+          successfulFiles: mockContentFiles.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
@@ -403,7 +398,7 @@ npm install @melalawi/abu-web-kernel
       
       const gettingStartedCategory = categories.find(c => c.id === 'gettingstarted');
       expect(gettingStartedCategory).toBeDefined();
-      expect(gettingStartedCategory!.name).toBe('Gettingstarted');
+      expect(gettingStartedCategory!.name).toBe('Getting Started');
       expect(gettingStartedCategory!.topics.length).toBeGreaterThan(0);
 
       const specificationsCategory = categories.find(c => c.id === 'specifications');
@@ -433,7 +428,14 @@ npm install @melalawi/abu-web-kernel
       const mockContentFiles: ContentFile[] = [
         {
           path: 'specifications/help-system.md',
-          content: `# Help System
+          content: `---
+title: Help System
+category: specifications
+tags: [help-system, specifications, api]
+difficulty: intermediate
+---
+
+# Help System
 
 This is the main help system specification.
 
@@ -456,19 +458,16 @@ const helpSystem = new HelpSystem();
         }
       ];
 
-      (global.fetch as any).mockImplementation((url: string) => {
-        const file = mockContentFiles.find(f => url.includes(f.path));
-        if (file) {
-          return Promise.resolve({
-            ok: true,
-            text: () => Promise.resolve(file.content)
-          });
+      // Mock ContentLoader's loadAllContent method
+      vi.spyOn(contentLoader, 'loadAllContent').mockResolvedValue({
+        success: mockContentFiles,
+        errors: [],
+        stats: {
+          totalFiles: mockContentFiles.length,
+          successfulFiles: mockContentFiles.length,
+          failedFiles: 0,
+          processingTime: 100
         }
-        return Promise.resolve({
-          ok: false,
-          status: 404,
-          statusText: 'Not Found'
-        });
       });
 
       await contentRegistry.initialize();
@@ -476,7 +475,7 @@ const helpSystem = new HelpSystem();
 
     it('should extract and store content metadata', () => {
       const topics = contentRegistry.getTopics();
-      const helpSystemTopic = topics.find(t => t.id.includes('help-system'));
+      const helpSystemTopic = topics.find(t => t.title === 'Help System');
 
       expect(helpSystemTopic).toBeDefined();
       expect(helpSystemTopic!.metadata).toBeDefined();

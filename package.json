@@ -24,20 +24,21 @@
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
+    "@melalawi/abu-web-kernel": "file:../Abu-98-OS-Web-Kernel",
     "clsx": "^2.0.0",
+    "markdown-wasm": "^1.2.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@melalawi/abu-web-kernel": "file:../Abu-98-OS-Web-Kernel"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
-    "typescript": "~5.6.2",
-    "vitest": "^2.0.0",
     "@vitest/coverage-v8": "^2.0.0",
-    "jsdom": "^25.0.0"
+    "jsdom": "^25.0.0",
+    "typescript": "~5.6.2",
+    "vitest": "^2.0.0"
   },
   "browserslist": {
     "production": [

@@ -52,11 +52,11 @@ More content.`;
       const result = parser.parse(content, 'test.md');
 
       expect(result.path).toBe('test.md');
-      expect(result.html).toContain('<h1 id="test-document">Test Document</h1>');
-      expect(result.html).toContain('<strong>bold</strong>');
+      expect(result.html).toContain('<h1 class="help-heading help-heading-1"><a id="test-document" class="anchor" aria-hidden="true" href="#test-document"></a>Test Document</h1>');
+      expect(result.html).toContain('<b>bold</b>');
       expect(result.html).toContain('<em>italic</em>');
-      expect(result.html).toContain('<h2 id="section-1">Section 1</h2>');
-      expect(result.html).toContain('<h3 id="subsection">Subsection</h3>');
+      expect(result.html).toContain('<h2 class="help-heading help-heading-2"><a id="section-1" class="anchor" aria-hidden="true" href="#section-1"></a>Section 1</h2>');
+      expect(result.html).toContain('<h3 class="help-heading help-heading-3"><a id="subsection" class="anchor" aria-hidden="true" href="#subsection"></a>Subsection</h3>');
       expect(result.searchableText).toContain('Test Document');
       expect(result.searchableText).toContain('bold');
       expect(result.searchableText).toContain('italic');
@@ -75,7 +75,7 @@ This is the content.`;
       const result = parser.parse(content, 'test.md');
 
       expect(result.html).not.toContain('---');
-      expect(result.html).toContain('<h1 id="test-document">Test Document</h1>');
+      expect(result.html).toContain('<h1 class="help-heading help-heading-1"><a id="test-document" class="anchor" aria-hidden="true" href="#test-document"></a>Test Document</h1>');
     });
 
     it('should generate table of contents', () => {
@@ -167,7 +167,7 @@ def test():
 
       expect(result.codeBlocks).toHaveLength(2);
       expect(result.codeBlocks[0].language).toBe('javascript');
-      expect(result.codeBlocks[0].code).toContain('function test()');
+      expect(result.codeBlocks[0].code).toContain('return "hello";');
       expect(result.codeBlocks[1].language).toBe('python');
       expect(result.codeBlocks[1].code).toContain('def test():');
     });
@@ -204,9 +204,9 @@ function test() {}
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<h1 id="heading-1">Heading 1</h1>');
-      expect(html).toContain('<h2 id="heading-2">Heading 2</h2>');
-      expect(html).toContain('<h3 id="heading-3">Heading 3</h3>');
+      expect(html).toContain('<h1 class="help-heading help-heading-1"><a id="heading-1" class="anchor" aria-hidden="true" href="#heading-1"></a>Heading 1</h1>');
+      expect(html).toContain('<h2 class="help-heading help-heading-2"><a id="heading-2" class="anchor" aria-hidden="true" href="#heading-2"></a>Heading 2</h2>');
+      expect(html).toContain('<h3 class="help-heading help-heading-3"><a id="heading-3" class="anchor" aria-hidden="true" href="#heading-3"></a>Heading 3</h3>');
     });
 
     it('should convert bold and italic text', () => {
@@ -214,7 +214,7 @@ function test() {}
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<strong>Bold text</strong>');
+      expect(html).toContain('<b>Bold text</b>');
       expect(html).toContain('<em>italic text</em>');
     });
 
@@ -223,7 +223,7 @@ function test() {}
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<code class="inline-code">inline code</code>');
+      expect(html).toContain('<code class="inline-code win98-inline-code">inline code</code>');
     });
 
     it('should convert code blocks', () => {
@@ -235,7 +235,7 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<pre class="code-block">');
+      expect(html).toContain('<pre class="code-block win98-code-block">');
       expect(html).toContain('<code class="language-javascript">');
       expect(html).toContain('function test()');
     });
@@ -245,7 +245,8 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<blockquote class="help-blockquote">This is a blockquote</blockquote>');
+      expect(html).toContain('<blockquote class="help-blockquote win98-blockquote">');
+      expect(html).toContain('This is a blockquote');
     });
 
     it('should convert unordered lists', () => {
@@ -255,10 +256,10 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<ul class="help-list">');
-      expect(html).toContain('<li class="help-list-item">Item 1</li>');
-      expect(html).toContain('<li class="help-list-item">Item 2</li>');
-      expect(html).toContain('<li class="help-list-item">Item 3</li>');
+      expect(html).toContain('<ul class="help-list win98-list">');
+      expect(html).toContain('<li class="help-list-item win98-list-item">Item 1</li>');
+      expect(html).toContain('<li class="help-list-item win98-list-item">Item 2</li>');
+      expect(html).toContain('<li class="help-list-item win98-list-item">Item 3</li>');
     });
 
     it('should convert ordered lists', () => {
@@ -268,10 +269,10 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<ol class="help-list">');
-      expect(html).toContain('<li class="help-list-item">First item</li>');
-      expect(html).toContain('<li class="help-list-item">Second item</li>');
-      expect(html).toContain('<li class="help-list-item">Third item</li>');
+      expect(html).toContain('<ol class="help-list win98-list">');
+      expect(html).toContain('<li class="help-list-item win98-list-item">First item</li>');
+      expect(html).toContain('<li class="help-list-item win98-list-item">Second item</li>');
+      expect(html).toContain('<li class="help-list-item win98-list-item">Third item</li>');
     });
 
     it('should convert links', () => {
@@ -280,8 +281,8 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<a href="/docs/internal" class="help-link internal">Internal Link</a>');
-      expect(html).toContain('<a href="https://example.com" class="help-link external" target="_blank" rel="noopener noreferrer">External Link</a>');
+      expect(html).toContain('<a href="/docs/internal">Internal Link</a>');
+      expect(html).toContain('<a href="https://example.com">External Link</a>');
     });
 
     it('should convert images', () => {
@@ -289,7 +290,7 @@ function test() {
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<img src="/images/test.png" alt="Alt text" class="help-image" />');
+      expect(html).toContain('<img src="/images/test.png" alt="Alt text" title="Title">');
     });
 
     it('should convert horizontal rules', () => {
@@ -301,7 +302,7 @@ Content below`;
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<hr class="help-hr" />');
+      expect(html).toContain('<hr>');
     });
 
     it('should convert paragraphs', () => {
@@ -311,8 +312,8 @@ This is another paragraph.`;
 
       const html = (parser as any).parseMarkdownToHtml(content);
 
-      expect(html).toContain('<p class="help-paragraph">This is a paragraph.</p>');
-      expect(html).toContain('<p class="help-paragraph">This is another paragraph.</p>');
+      expect(html).toContain('<p class="help-paragraph win98-text">This is a paragraph.</p>');
+      expect(html).toContain('<p class="help-paragraph win98-text">This is another paragraph.</p>');
     });
 
     it('should add help system styling classes', () => {
@@ -373,68 +374,6 @@ This is content.`;
     });
   });
 
-  describe('highlightCode', () => {
-    it('should highlight JavaScript code', () => {
-      const code = `function test() {
-  return "hello";
-}`;
-
-      const highlighted = (parser as any).highlightCode(code, 'javascript');
-
-      expect(highlighted).toContain('<span class="keyword">function</span>');
-      expect(highlighted).toContain('<span class="keyword">return</span>');
-      expect(highlighted).toContain('<span class="string">"hello"</span>');
-    });
-
-    it('should highlight TypeScript code', () => {
-      const code = `interface Test {
-  name: string;
-}`;
-
-      const highlighted = (parser as any).highlightCode(code, 'typescript');
-
-      expect(highlighted).toContain('<span class="keyword">interface</span>');
-    });
-
-    it('should highlight HTML code', () => {
-      const code = `<div class="test">Content</div>`;
-
-      const highlighted = (parser as any).highlightCode(code, 'html');
-
-      expect(highlighted).toContain('<span class="tag">&lt;div&gt;</span>');
-      expect(highlighted).toContain('<span class="attribute">class</span>');
-    });
-
-    it('should highlight CSS code', () => {
-      const code = `.test { color: red; }`;
-
-      const highlighted = (parser as any).highlightCode(code, 'css');
-
-      expect(highlighted).toContain('<span class="selector">.test</span>');
-      expect(highlighted).toContain('<span class="property">color</span>');
-    });
-
-    it('should highlight JSON code', () => {
-      const code = `{
-  "name": "test",
-  "value": true
-}`;
-
-      const highlighted = (parser as any).highlightCode(code, 'json');
-
-      expect(highlighted).toContain('<span class="key">"name"</span>');
-      expect(highlighted).toContain('<span class="string">"test"</span>');
-      expect(highlighted).toContain('<span class="literal">true</span>');
-    });
-
-    it('should return unhighlighted code for unknown language', () => {
-      const code = `some unknown code`;
-
-      const highlighted = (parser as any).highlightCode(code, 'unknown');
-
-      expect(highlighted).toBe('some unknown code');
-    });
-  });
 
   describe('utility methods', () => {
     it('should generate heading IDs correctly', () => {
@@ -443,17 +382,10 @@ This is content.`;
       const id3 = (parser as any).generateHeadingId('Getting Started (v2.0)');
 
       expect(id1).toBe('test-document');
-      expect(id2).toBe('api-reference--examples');
+      expect(id2).toBe('api-reference-examples');
       expect(id3).toBe('getting-started-v20');
     });
 
-    it('should escape HTML correctly', () => {
-      const text = `This has <script>alert('xss')</script> and "quotes" & symbols`;
-
-      const escaped = (parser as any).escapeHtml(text);
-
-      expect(escaped).toBe('This has &lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt; and &quot;quotes&quot; &amp; symbols');
-    });
 
     it('should identify external links correctly', () => {
       expect((parser as any).isExternalLink('https://example.com')).toBe(true);

@@ -13,7 +13,10 @@ import type {
   ParsedContent,
   ContentProcessingResult,
   HelpTopic,
-  HelpCategory
+  HelpCategory,
+  ContentMetadata,
+  MarkdownParserOptions,
+  TopicBuilderOptions
 } from './types.js';
 
 /**

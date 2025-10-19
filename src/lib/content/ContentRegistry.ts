@@ -43,10 +43,14 @@ export class ContentRegistry implements IContentRegistry {
   private helpCategories: Map<string, HelpCategory> = new Map();
   private isInitialized = false;
 
-  constructor() {
-    this.loader = new ContentLoader();
-    this.parser = new MarkdownParser();
-    this.builder = new TopicBuilder();
+  constructor(
+    loader?: ContentLoader,
+    parser?: MarkdownParser,
+    builder?: TopicBuilder
+  ) {
+    this.loader = loader || new ContentLoader();
+    this.parser = parser || new MarkdownParser();
+    this.builder = builder || new TopicBuilder();
   }
 
   /**
@@ -330,7 +334,7 @@ export class ContentRegistry implements IContentRegistry {
    */
   private findTopicByPath(path: string): HelpTopic | undefined {
     for (const topic of this.topics.values()) {
-      if (topic.id === this.builder['generateIdFromPath'](path)) {
+      if (topic.id === this.builder.generateIdFromPath(path)) {
         return topic;
       }
     }
