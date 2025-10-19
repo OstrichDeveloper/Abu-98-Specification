@@ -8,6 +8,10 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #008080 0%, #004040 100%);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 996px) {
@@ -20,4 +24,126 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Windows 98 Window Styling */
+.win98Window {
+  background: #c0c0c0;
+  border: 2px outset #c0c0c0;
+  border-radius: 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.win98Titlebar {
+  background: linear-gradient(90deg, #0a246a 0%, #a6caf0 100%);
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #808080;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.win98TitlebarLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win98Icon {
+  width: 16px;
+  height: 16px;
+  background: #c0c0c0;
+  border: 1px inset #c0c0c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win98Icon::before {
+  content: "📄";
+  font-size: 10px;
+}
+
+.win98Title {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.win98TitlebarRight {
+  display: flex;
+  gap: 2px;
+}
+
+.win98Button {
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  border: 1px outset #c0c0c0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #000;
+}
+
+.win98Button:hover {
+  background: #d4d0c8;
+}
+
+.win98Button:active {
+  border: 1px inset #c0c0c0;
+}
+
+.win98Content {
+  padding: 20px;
+  background: #c0c0c0;
+  color: #000;
+}
+
+.win98Content h1 {
+  color: #000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-shadow: none;
+}
+
+.win98Content p {
+  color: #000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Windows 98 Button Styling */
+.buttons .button {
+  background: #c0c0c0;
+  border: 2px outset #c0c0c0;
+  color: #000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.buttons .button:hover {
+  background: #d4d0c8;
+  text-decoration: none;
+  color: #000;
+}
+
+.buttons .button:active {
+  border: 2px inset #c0c0c0;
+  background: #a0a0a0;
 }

@@ -13,16 +13,31 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+        <div className={styles.win98Window}>
+          <div className={styles.win98Titlebar}>
+            <div className={styles.win98TitlebarLeft}>
+              <div className={styles.win98Icon}></div>
+              <span className={styles.win98Title}>Abu 98 Specification</span>
+            </div>
+            <div className={styles.win98TitlebarRight}>
+              <div className={styles.win98Button}></div>
+              <div className={styles.win98Button}></div>
+              <div className={styles.win98Button}></div>
+            </div>
+          </div>
+          <div className={styles.win98Content}>
+            <Heading as="h1" className="hero__title">
+              {siteConfig.title}
+            </Heading>
+            <p className="hero__subtitle">{siteConfig.tagline}</p>
+            <div className={styles.buttons}>
+              <Link
+                className="button button--secondary button--lg"
+                to="/docs/intro">
+                Start Exploring - 5min ⏱️
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -33,8 +48,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Complete documentation for the Abu 98 ecosystem - Web Kernel, Enterprise Dashboard, and Service">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
