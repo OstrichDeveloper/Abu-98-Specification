@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-specifications/help-system-functional" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Windows 98 F1 Help System - Functional Specification | Abu OS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ostrichdeveloper.github.io/Abu-98-Specification/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ostrichdeveloper.github.io/Abu-98-Specification/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/help-system-functional"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Windows 98 F1 Help System - Functional Specification | Abu OS Documentation"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/Abu-98-Specification/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/help-system-functional"><link data-rh="true" rel="alternate" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/help-system-functional" hreflang="en"><link data-rh="true" rel="alternate" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/help-system-functional" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Windows 98 F1 Help System - Functional Specification","item":"https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/help-system-functional"}]}</script><link rel="stylesheet" href="/Abu-98-Specification/assets/css/styles.751b5649.css">
+<script src="/Abu-98-Specification/assets/js/runtime~main.cd34e112.js" defer="defer"></script>
+<script src="/Abu-98-Specification/assets/js/main.c1dcbe75.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/Abu-98-Specification/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Abu-98-Specification/"><div class="navbar__logo"><img src="/Abu-98-Specification/img/logo.svg" alt="Abu OS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/Abu-98-Specification/img/logo.svg" alt="Abu OS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Abu OS</b></a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/design/">Design</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Abu-98-Specification/docs/specifications/">Specifications</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-web-kernel/">Web Kernel</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-enterprise/">Enterprise</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-service/">Service</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/shared/">Shared</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/melalawi/Abu-Specification" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Abu-98-Specification/docs/specifications/"><span title="Technical Specifications" class="linkLabel_WmDU">Technical Specifications</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Abu-98-Specification/docs/specifications/help-system"><span title="Windows 98 F1 Help System Specification" class="linkLabel_WmDU">Windows 98 F1 Help System Specification</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/Abu-98-Specification/docs/specifications/help-system-functional"><span title="Windows 98 F1 Help System - Functional Specification" class="linkLabel_WmDU">Windows 98 F1 Help System - Functional Specification</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Abu-98-Specification/docs/specifications/help-system-technical"><span title="Windows 98 F1 Help System - Technical Specification" class="linkLabel_WmDU">Windows 98 F1 Help System - Technical Specification</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/Abu-98-Specification/docs/specifications/api/"><span title="README" class="categoryLinkLabel_W154">README</span></a><button aria-label="Expand sidebar category &#x27;README&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Abu-98-Specification/docs/specifications/architecture/window-management"><span title="architecture" class="categoryLinkLabel_W154">architecture</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Abu-98-Specification/docs/specifications/protocols/deployment-workflow"><span title="protocols" class="categoryLinkLabel_W154">protocols</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/Abu-98-Specification/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Windows 98 F1 Help System - Functional Specification</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Windows 98 F1 Help System - Functional Specification</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>This document defines the complete functional behavior of the Windows 98 F1 Help System, including all user interactions, navigation flows, search capabilities, bookmark management, and state persistence mechanisms.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="navigation-system">Navigation System<a href="#navigation-system" class="hash-link" aria-label="Direct link to Navigation System" title="Direct link to Navigation System" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topic-navigation">Topic Navigation<a href="#topic-navigation" class="hash-link" aria-label="Direct link to Topic Navigation" title="Direct link to Topic Navigation" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="topic-selection">Topic Selection<a href="#topic-selection" class="hash-link" aria-label="Direct link to Topic Selection" title="Direct link to Topic Selection" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Primary Action</strong>: Click on topic in Contents tree to display content</li>
+<li class=""><strong>Secondary Action</strong>: Double-click topic to open in new window (if supported)</li>
+<li class=""><strong>Keyboard Navigation</strong>: Arrow keys to navigate tree, Enter to select topic</li>
+<li class=""><strong>Visual Feedback</strong>: Selected topic highlighted with Windows 98 selection color</li>
+<li class=""><strong>Content Loading</strong>: Display topic content in right pane with loading indicator</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="tree-navigation">Tree Navigation<a href="#tree-navigation" class="hash-link" aria-label="Direct link to Tree Navigation" title="Direct link to Tree Navigation" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Expand/Collapse</strong>: Click folder icons to expand/collapse categories</li>
+<li class=""><strong>Auto-Expand</strong>: Expand parent folders when navigating to nested topics</li>
+<li class=""><strong>State Persistence</strong>: Remember expanded/collapsed state per session</li>
+<li class=""><strong>Keyboard Support</strong>: Left/Right arrow keys to expand/collapse folders</li>
+<li class=""><strong>Visual Indicators</strong>: Folder icons change state (open/closed) based on expansion</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="cross-reference-navigation">Cross-Reference Navigation<a href="#cross-reference-navigation" class="hash-link" aria-label="Direct link to Cross-Reference Navigation" title="Direct link to Cross-Reference Navigation" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Hyperlink Detection</strong>: Identify topic references in content</li>
+<li class=""><strong>Link Styling</strong>: Blue color (#0000FF) with underlines for clickable links</li>
+<li class=""><strong>Click Behavior</strong>: Navigate to referenced topic, update history</li>
+<li class=""><strong>External Links</strong>: Handle external URLs (open in new window/tab)</li>
+<li class=""><strong>Broken Links</strong>: Display error message for missing topics</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="history-management">History Management<a href="#history-management" class="hash-link" aria-label="Direct link to History Management" title="Direct link to History Management" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="navigation-history">Navigation History<a href="#navigation-history" class="hash-link" aria-label="Direct link to Navigation History" title="Direct link to Navigation History" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>History Tracking</strong>: Record all viewed topics in chronological order</li>
+<li class=""><strong>History Limit</strong>: Maximum 100 entries to prevent memory issues</li>
+<li class=""><strong>Duplicate Prevention</strong>: Skip adding duplicate consecutive entries</li>
+<li class=""><strong>Session Persistence</strong>: Save history to localStorage between sessions</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="backforward-navigation">Back/Forward Navigation<a href="#backforward-navigation" class="hash-link" aria-label="Direct link to Back/Forward Navigation" title="Direct link to Back/Forward Navigation" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Back Button</strong>: Navigate to previous topic in history</li>
+<li class=""><strong>Forward Button</strong>: Navigate to next topic in history (if available)</li>
+<li class=""><strong>Button States</strong>: Disable buttons when no history available</li>
+<li class=""><strong>Keyboard Shortcuts</strong>: Alt+Left (back), Alt+Right (forward)</li>
+<li class=""><strong>Visual Feedback</strong>: Button pressed state when clicked</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="history-tab">History Tab<a href="#history-tab" class="hash-link" aria-label="Direct link to History Tab" title="Direct link to History Tab" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>History Display</strong>: Show complete navigation history with timestamps</li>
+<li class=""><strong>Topic Selection</strong>: Click history entry to navigate to topic</li>
+<li class=""><strong>Clear History</strong>: Button to clear entire navigation history</li>
+<li class=""><strong>Date Grouping</strong>: Group history entries by date for better organization</li>
+<li class=""><strong>Search History</strong>: Filter history entries by topic title</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="home-navigation">Home Navigation<a href="#home-navigation" class="hash-link" aria-label="Direct link to Home Navigation" title="Direct link to Home Navigation" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Home Button</strong>: Return to main help index (first topic)</li>
+<li class=""><strong>Home Topic</strong>: Display overview/introduction topic</li>
+<li class=""><strong>Keyboard Shortcut</strong>: Alt+Home</li>
+<li class=""><strong>Visual Feedback</strong>: Button pressed state when clicked</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-system">Search System<a href="#search-system" class="hash-link" aria-label="Direct link to Search System" title="Direct link to Search System" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-interface">Search Interface<a href="#search-interface" class="hash-link" aria-label="Direct link to Search Interface" title="Direct link to Search Interface" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-input">Search Input<a href="#search-input" class="hash-link" aria-label="Direct link to Search Input" title="Direct link to Search Input" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Search Field</strong>: Text input in Search tab for query entry</li>
+<li class=""><strong>Search Button</strong>: Execute search when clicked</li>
+<li class=""><strong>Enter Key</strong>: Execute search when Enter key pressed</li>
+<li class=""><strong>Clear Button</strong>: Clear search field and results</li>
+<li class=""><strong>Placeholder Text</strong>: &quot;Enter search terms...&quot;</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-execution">Search Execution<a href="#search-execution" class="hash-link" aria-label="Direct link to Search Execution" title="Direct link to Search Execution" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Query Processing</strong>: Tokenize and normalize search terms</li>
+<li class=""><strong>Search Scope</strong>: Search across all documentation content</li>
+<li class=""><strong>Search Types</strong>: Support exact phrase, boolean operators, wildcards</li>
+<li class=""><strong>Case Sensitivity</strong>: Case-insensitive search by default</li>
+<li class=""><strong>Special Characters</strong>: Handle quotes, operators, special characters</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-results">Search Results<a href="#search-results" class="hash-link" aria-label="Direct link to Search Results" title="Direct link to Search Results" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="results-display">Results Display<a href="#results-display" class="hash-link" aria-label="Direct link to Results Display" title="Direct link to Results Display" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Results List</strong>: Display matching topics with relevance ranking</li>
+<li class=""><strong>Result Format</strong>: Title, snippet, category, relevance score</li>
+<li class=""><strong>Result Limit</strong>: Maximum 50 results to prevent performance issues</li>
+<li class=""><strong>Pagination</strong>: Support for large result sets (future enhancement)</li>
+<li class=""><strong>No Results</strong>: Display &quot;No results found&quot; message</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="result-interaction">Result Interaction<a href="#result-interaction" class="hash-link" aria-label="Direct link to Result Interaction" title="Direct link to Result Interaction" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Result Selection</strong>: Click result to navigate to topic</li>
+<li class=""><strong>Keyword Highlighting</strong>: Highlight search terms in result snippets</li>
+<li class=""><strong>Result Preview</strong>: Hover to show topic preview (future enhancement)</li>
+<li class=""><strong>Result Sorting</strong>: Sort by relevance, title, category, date</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="search-history">Search History<a href="#search-history" class="hash-link" aria-label="Direct link to Search History" title="Direct link to Search History" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Query History</strong>: Remember recent search queries</li>
+<li class=""><strong>History Display</strong>: Show recent queries in dropdown</li>
+<li class=""><strong>Query Selection</strong>: Click history entry to repeat search</li>
+<li class=""><strong>Clear History</strong>: Option to clear search history</li>
+<li class=""><strong>History Limit</strong>: Maximum 20 recent queries</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advanced-search-features">Advanced Search Features<a href="#advanced-search-features" class="hash-link" aria-label="Direct link to Advanced Search Features" title="Direct link to Advanced Search Features" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="boolean-operators">Boolean Operators<a href="#boolean-operators" class="hash-link" aria-label="Direct link to Boolean Operators" title="Direct link to Boolean Operators" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>AND Operator</strong>: Space-separated terms (default behavior)</li>
+<li class=""><strong>OR Operator</strong>: Use &quot;OR&quot; keyword between terms</li>
+<li class=""><strong>NOT Operator</strong>: Use &quot;NOT&quot; or &quot;-&quot; prefix to exclude terms</li>
+<li class=""><strong>Parentheses</strong>: Group terms with parentheses for complex queries</li>
+<li class=""><strong>Examples</strong>: &quot;button AND click&quot;, &quot;window OR dialog&quot;, &quot;help NOT error&quot;</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="phrase-search">Phrase Search<a href="#phrase-search" class="hash-link" aria-label="Direct link to Phrase Search" title="Direct link to Phrase Search" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Quoted Phrases</strong>: Use quotes for exact phrase matching</li>
+<li class=""><strong>Phrase Highlighting</strong>: Highlight complete phrases in results</li>
+<li class=""><strong>Phrase Examples</strong>: &quot;Windows 98&quot;, &quot;help system&quot;, &quot;user interface&quot;</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="fuzzy-matching">Fuzzy Matching<a href="#fuzzy-matching" class="hash-link" aria-label="Direct link to Fuzzy Matching" title="Direct link to Fuzzy Matching" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Typo Tolerance</strong>: Handle common typos and misspellings</li>
+<li class=""><strong>Partial Matching</strong>: Match partial words and stems</li>
+<li class=""><strong>Soundex Matching</strong>: Match phonetically similar words</li>
+<li class=""><strong>Edit Distance</strong>: Use Levenshtein distance for fuzzy matching</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bookmark-system">Bookmark System<a href="#bookmark-system" class="hash-link" aria-label="Direct link to Bookmark System" title="Direct link to Bookmark System" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bookmark-management">Bookmark Management<a href="#bookmark-management" class="hash-link" aria-label="Direct link to Bookmark Management" title="Direct link to Bookmark Management" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="adding-bookmarks">Adding Bookmarks<a href="#adding-bookmarks" class="hash-link" aria-label="Direct link to Adding Bookmarks" title="Direct link to Adding Bookmarks" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Add Bookmark</strong>: Bookmark current topic via menu or button</li>
+<li class=""><strong>Duplicate Prevention</strong>: Prevent duplicate bookmarks</li>
+<li class=""><strong>Bookmark Confirmation</strong>: Show confirmation message when added</li>
+<li class=""><strong>Bookmark Icon</strong>: Visual indicator for bookmarked topics</li>
+<li class=""><strong>Keyboard Shortcut</strong>: Ctrl+D to bookmark current topic</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="removing-bookmarks">Removing Bookmarks<a href="#removing-bookmarks" class="hash-link" aria-label="Direct link to Removing Bookmarks" title="Direct link to Removing Bookmarks" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Remove Bookmark</strong>: Remove bookmark via menu or button</li>
+<li class=""><strong>Bulk Removal</strong>: Remove multiple bookmarks at once</li>
+<li class=""><strong>Remove Confirmation</strong>: Show confirmation dialog for removal</li>
+<li class=""><strong>Icon Update</strong>: Remove bookmark icon when unbookmarked</li>
+<li class=""><strong>Keyboard Shortcut</strong>: Ctrl+Shift+D to remove bookmark</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="bookmark-organization">Bookmark Organization<a href="#bookmark-organization" class="hash-link" aria-label="Direct link to Bookmark Organization" title="Direct link to Bookmark Organization" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Bookmark List</strong>: Display all bookmarks in Favorites tab</li>
+<li class=""><strong>Bookmark Sorting</strong>: Sort by title, date added, category</li>
+<li class=""><strong>Bookmark Categories</strong>: Group bookmarks by topic category</li>
+<li class=""><strong>Bookmark Search</strong>: Search within bookmarks</li>
+<li class=""><strong>Bookmark Export</strong>: Export bookmarks to file (future feature)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bookmark-navigation">Bookmark Navigation<a href="#bookmark-navigation" class="hash-link" aria-label="Direct link to Bookmark Navigation" title="Direct link to Bookmark Navigation" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Bookmark Selection</strong>: Click bookmark to navigate to topic</li>
+<li class=""><strong>Bookmark Context</strong>: Show bookmark date and category</li>
+<li class=""><strong>Bookmark Management</strong>: Edit bookmark title or category</li>
+<li class=""><strong>Bookmark Sync</strong>: Sync bookmarks across sessions</li>
+<li class=""><strong>Bookmark Backup</strong>: Backup bookmarks to localStorage</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-management">Content Management<a href="#content-management" class="hash-link" aria-label="Direct link to Content Management" title="Direct link to Content Management" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topic-structure">Topic Structure<a href="#topic-structure" class="hash-link" aria-label="Direct link to Topic Structure" title="Direct link to Topic Structure" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="hierarchical-organization">Hierarchical Organization<a href="#hierarchical-organization" class="hash-link" aria-label="Direct link to Hierarchical Organization" title="Direct link to Hierarchical Organization" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Tree Structure</strong>: Organize topics in hierarchical tree</li>
+<li class=""><strong>Category Grouping</strong>: Group related topics under categories</li>
+<li class=""><strong>Nested Categories</strong>: Support multiple levels of nesting</li>
+<li class=""><strong>Topic Relationships</strong>: Define parent-child relationships</li>
+<li class=""><strong>Cross-References</strong>: Link related topics across categories</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="topic-metadata">Topic Metadata<a href="#topic-metadata" class="hash-link" aria-label="Direct link to Topic Metadata" title="Direct link to Topic Metadata" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Topic ID</strong>: Unique identifier for each topic</li>
+<li class=""><strong>Topic Title</strong>: Display title for topic</li>
+<li class=""><strong>Topic Description</strong>: Brief description of topic content</li>
+<li class=""><strong>Topic Keywords</strong>: Keywords for search indexing</li>
+<li class=""><strong>Topic Category</strong>: Category classification</li>
+<li class=""><strong>Last Modified</strong>: Date when topic was last updated</li>
+<li class=""><strong>Related Topics</strong>: List of related topic IDs</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-rendering">Content Rendering<a href="#content-rendering" class="hash-link" aria-label="Direct link to Content Rendering" title="Direct link to Content Rendering" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="markdown-processing">Markdown Processing<a href="#markdown-processing" class="hash-link" aria-label="Direct link to Markdown Processing" title="Direct link to Markdown Processing" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Markdown Support</strong>: Convert markdown to HTML</li>
+<li class=""><strong>Syntax Highlighting</strong>: Highlight code blocks with syntax coloring</li>
+<li class=""><strong>Table Rendering</strong>: Render tables with Windows 98 styling</li>
+<li class=""><strong>List Rendering</strong>: Render ordered and unordered lists</li>
+<li class=""><strong>Link Processing</strong>: Convert markdown links to topic references</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="rich-text-features">Rich Text Features<a href="#rich-text-features" class="hash-link" aria-label="Direct link to Rich Text Features" title="Direct link to Rich Text Features" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Text Formatting</strong>: Bold, italic, underline, strikethrough</li>
+<li class=""><strong>Headings</strong>: H1-H6 headings with proper hierarchy</li>
+<li class=""><strong>Code Blocks</strong>: Monospace font with inset border</li>
+<li class=""><strong>Blockquotes</strong>: Indented quotes with left border</li>
+<li class=""><strong>Horizontal Rules</strong>: Horizontal dividers between sections</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="image-handling">Image Handling<a href="#image-handling" class="hash-link" aria-label="Direct link to Image Handling" title="Direct link to Image Handling" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Image Display</strong>: Display images with proper scaling</li>
+<li class=""><strong>Image Optimization</strong>: Optimize images for web display</li>
+<li class=""><strong>Image Alt Text</strong>: Provide alternative text for accessibility</li>
+<li class=""><strong>Image Captions</strong>: Support image captions and descriptions</li>
+<li class=""><strong>Image Lazy Loading</strong>: Load images on demand for performance</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-updates">Content Updates<a href="#content-updates" class="hash-link" aria-label="Direct link to Content Updates" title="Direct link to Content Updates" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="live-updates">Live Updates<a href="#live-updates" class="hash-link" aria-label="Direct link to Live Updates" title="Direct link to Live Updates" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Content Refresh</strong>: Refresh content without page reload</li>
+<li class=""><strong>Change Detection</strong>: Detect content changes and update display</li>
+<li class=""><strong>Update Notifications</strong>: Notify user of content updates</li>
+<li class=""><strong>Version Tracking</strong>: Track content versions and changes</li>
+<li class=""><strong>Rollback Support</strong>: Rollback to previous content versions</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="state-persistence">State Persistence<a href="#state-persistence" class="hash-link" aria-label="Direct link to State Persistence" title="Direct link to State Persistence" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="window-state">Window State<a href="#window-state" class="hash-link" aria-label="Direct link to Window State" title="Direct link to Window State" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="position-and-size">Position and Size<a href="#position-and-size" class="hash-link" aria-label="Direct link to Position and Size" title="Direct link to Position and Size" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Window Position</strong>: Save window position on screen</li>
+<li class=""><strong>Window Size</strong>: Save window dimensions</li>
+<li class=""><strong>Maximized State</strong>: Remember if window was maximized</li>
+<li class=""><strong>Restore Position</strong>: Restore window to saved position on open</li>
+<li class=""><strong>Multi-Monitor Support</strong>: Handle multiple monitor configurations</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="layout-state">Layout State<a href="#layout-state" class="hash-link" aria-label="Direct link to Layout State" title="Direct link to Layout State" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Splitter Position</strong>: Save left/right pane splitter position</li>
+<li class=""><strong>Pane Visibility</strong>: Remember which panes are visible</li>
+<li class=""><strong>Tab Selection</strong>: Remember active tab (Contents, Index, Search, etc.)</li>
+<li class=""><strong>Tree Expansion</strong>: Remember expanded/collapsed tree nodes</li>
+<li class=""><strong>Scroll Position</strong>: Remember scroll positions in each pane</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="application-state">Application State<a href="#application-state" class="hash-link" aria-label="Direct link to Application State" title="Direct link to Application State" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="current-topic">Current Topic<a href="#current-topic" class="hash-link" aria-label="Direct link to Current Topic" title="Direct link to Current Topic" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Topic Selection</strong>: Remember last viewed topic</li>
+<li class=""><strong>Topic Context</strong>: Save topic navigation context</li>
+<li class=""><strong>Topic History</strong>: Maintain navigation history</li>
+<li class=""><strong>Topic Bookmarks</strong>: Persist bookmark state</li>
+<li class=""><strong>Topic Search</strong>: Remember last search query and results</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="user-preferences">User Preferences<a href="#user-preferences" class="hash-link" aria-label="Direct link to User Preferences" title="Direct link to User Preferences" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Font Size</strong>: Save user&#x27;s preferred font size</li>
+<li class=""><strong>Color Scheme</strong>: Remember light/dark theme preference</li>
+<li class=""><strong>Language</strong>: Save user&#x27;s language preference</li>
+<li class=""><strong>Accessibility</strong>: Remember accessibility settings</li>
+<li class=""><strong>Customization</strong>: Save user customizations</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="data-persistence">Data Persistence<a href="#data-persistence" class="hash-link" aria-label="Direct link to Data Persistence" title="Direct link to Data Persistence" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="localstorage-usage">LocalStorage Usage<a href="#localstorage-usage" class="hash-link" aria-label="Direct link to LocalStorage Usage" title="Direct link to LocalStorage Usage" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>State Storage</strong>: Store all state in localStorage</li>
+<li class=""><strong>Data Format</strong>: Use JSON format for complex data</li>
+<li class=""><strong>Storage Limits</strong>: Handle localStorage size limits</li>
+<li class=""><strong>Data Validation</strong>: Validate stored data on load</li>
+<li class=""><strong>Error Recovery</strong>: Handle corrupted localStorage data</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="session-management">Session Management<a href="#session-management" class="hash-link" aria-label="Direct link to Session Management" title="Direct link to Session Management" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Session Start</strong>: Initialize state on application start</li>
+<li class=""><strong>Session End</strong>: Save state on application close</li>
+<li class=""><strong>Session Recovery</strong>: Restore state on application restart</li>
+<li class=""><strong>Session Timeout</strong>: Handle long-running sessions</li>
+<li class=""><strong>Session Cleanup</strong>: Clean up temporary data</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="keyboard-shortcuts">Keyboard Shortcuts<a href="#keyboard-shortcuts" class="hash-link" aria-label="Direct link to Keyboard Shortcuts" title="Direct link to Keyboard Shortcuts" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="navigation-shortcuts">Navigation Shortcuts<a href="#navigation-shortcuts" class="hash-link" aria-label="Direct link to Navigation Shortcuts" title="Direct link to Navigation Shortcuts" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>F1</strong>: Open help system (global shortcut)</li>
+<li class=""><strong>Alt+F4</strong>: Close help window</li>
+<li class=""><strong>Escape</strong>: Close menus, dialogs, or cancel operations</li>
+<li class=""><strong>Tab</strong>: Move focus between UI elements</li>
+<li class=""><strong>Shift+Tab</strong>: Move focus backwards between UI elements</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-navigation">Content Navigation<a href="#content-navigation" class="hash-link" aria-label="Direct link to Content Navigation" title="Direct link to Content Navigation" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Alt+Left</strong>: Go back to previous topic</li>
+<li class=""><strong>Alt+Right</strong>: Go forward to next topic</li>
+<li class=""><strong>Alt+Home</strong>: Go to home topic</li>
+<li class=""><strong>Ctrl+F</strong>: Focus search input field</li>
+<li class=""><strong>F3</strong>: Find next occurrence in content</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-interaction">Content Interaction<a href="#content-interaction" class="hash-link" aria-label="Direct link to Content Interaction" title="Direct link to Content Interaction" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Ctrl+C</strong>: Copy selected text to clipboard</li>
+<li class=""><strong>Ctrl+A</strong>: Select all content in current pane</li>
+<li class=""><strong>Ctrl+F</strong>: Find text in current content</li>
+<li class=""><strong>Ctrl+P</strong>: Print current topic</li>
+<li class=""><strong>Ctrl+D</strong>: Bookmark current topic</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="menu-navigation">Menu Navigation<a href="#menu-navigation" class="hash-link" aria-label="Direct link to Menu Navigation" title="Direct link to Menu Navigation" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Alt+F</strong>: Open File menu</li>
+<li class=""><strong>Alt+E</strong>: Open Edit menu</li>
+<li class=""><strong>Alt+B</strong>: Open Bookmark menu</li>
+<li class=""><strong>Alt+O</strong>: Open Options menu</li>
+<li class=""><strong>Alt+H</strong>: Open Help menu</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="context-sensitive-help">Context-Sensitive Help<a href="#context-sensitive-help" class="hash-link" aria-label="Direct link to Context-Sensitive Help" title="Direct link to Context-Sensitive Help" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="f1-integration">F1 Integration<a href="#f1-integration" class="hash-link" aria-label="Direct link to F1 Integration" title="Direct link to F1 Integration" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="global-f1-support">Global F1 Support<a href="#global-f1-support" class="hash-link" aria-label="Direct link to Global F1 Support" title="Direct link to Global F1 Support" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>F1 Detection</strong>: Detect F1 key press globally</li>
+<li class=""><strong>Context Detection</strong>: Determine current application context</li>
+<li class=""><strong>Help Mapping</strong>: Map contexts to relevant help topics</li>
+<li class=""><strong>Help Display</strong>: Display relevant help for current context</li>
+<li class=""><strong>Context Switching</strong>: Handle context changes dynamically</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="context-types">Context Types<a href="#context-types" class="hash-link" aria-label="Direct link to Context Types" title="Direct link to Context Types" translate="no">​</a></h4>
+<ul>
+<li class=""><strong>Application Context</strong>: Current application or window</li>
+<li class=""><strong>Component Context</strong>: Current UI component or control</li>
+<li class=""><strong>Feature Context</strong>: Current feature or functionality</li>
+<li class=""><strong>Error Context</strong>: Current error or warning state</li>
+<li class=""><strong>User Context</strong>: Current user action or workflow</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="context-help-display">Context Help Display<a href="#context-help-display" class="hash-link" aria-label="Direct link to Context Help Display" title="Direct link to Context Help Display" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Topic Selection</strong>: Select most relevant help topic</li>
+<li class=""><strong>Context Highlighting</strong>: Highlight relevant sections in help</li>
+<li class=""><strong>Quick Help</strong>: Display brief help information</li>
+<li class=""><strong>Full Help</strong>: Link to complete help topic</li>
+<li class=""><strong>Context History</strong>: Track context help usage</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="error-handling">Error Handling<a href="#error-handling" class="hash-link" aria-label="Direct link to Error Handling" title="Direct link to Error Handling" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-errors">Content Errors<a href="#content-errors" class="hash-link" aria-label="Direct link to Content Errors" title="Direct link to Content Errors" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Missing Topics</strong>: Display &quot;Topic not found&quot; message</li>
+<li class=""><strong>Broken Links</strong>: Show &quot;Link not available&quot; message</li>
+<li class=""><strong>Content Loading</strong>: Handle content loading failures</li>
+<li class=""><strong>Parse Errors</strong>: Handle markdown parsing errors</li>
+<li class=""><strong>Render Errors</strong>: Handle content rendering failures</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="system-errors">System Errors<a href="#system-errors" class="hash-link" aria-label="Direct link to System Errors" title="Direct link to System Errors" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Storage Errors</strong>: Handle localStorage failures</li>
+<li class=""><strong>Network Errors</strong>: Handle network connectivity issues</li>
+<li class=""><strong>Memory Errors</strong>: Handle memory limitations</li>
+<li class=""><strong>Performance Errors</strong>: Handle performance issues</li>
+<li class=""><strong>Browser Errors</strong>: Handle browser compatibility issues</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="user-error-recovery">User Error Recovery<a href="#user-error-recovery" class="hash-link" aria-label="Direct link to User Error Recovery" title="Direct link to User Error Recovery" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Error Messages</strong>: Display clear, helpful error messages</li>
+<li class=""><strong>Recovery Options</strong>: Provide options to recover from errors</li>
+<li class=""><strong>Error Reporting</strong>: Log errors for debugging</li>
+<li class=""><strong>Fallback Behavior</strong>: Provide fallback functionality</li>
+<li class=""><strong>User Guidance</strong>: Guide users through error resolution</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="performance-requirements">Performance Requirements<a href="#performance-requirements" class="hash-link" aria-label="Direct link to Performance Requirements" title="Direct link to Performance Requirements" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="response-times">Response Times<a href="#response-times" class="hash-link" aria-label="Direct link to Response Times" title="Direct link to Response Times" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Topic Navigation</strong>: &lt; 500ms to display new topic</li>
+<li class=""><strong>Search Results</strong>: &lt; 1 second to return search results</li>
+<li class=""><strong>Bookmark Operations</strong>: &lt; 200ms to add/remove bookmarks</li>
+<li class=""><strong>History Navigation</strong>: &lt; 300ms to navigate history</li>
+<li class=""><strong>Content Loading</strong>: &lt; 2 seconds to load initial content</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="memory-usage">Memory Usage<a href="#memory-usage" class="hash-link" aria-label="Direct link to Memory Usage" title="Direct link to Memory Usage" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Base Memory</strong>: &lt; 10MB for help system</li>
+<li class=""><strong>Content Memory</strong>: &lt; 50MB with all content loaded</li>
+<li class=""><strong>Search Index</strong>: &lt; 5MB for search functionality</li>
+<li class=""><strong>State Storage</strong>: &lt; 1MB for persistent state</li>
+<li class=""><strong>Cache Management</strong>: Implement LRU cache for performance</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scalability">Scalability<a href="#scalability" class="hash-link" aria-label="Direct link to Scalability" title="Direct link to Scalability" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Topic Limit</strong>: Support up to 10,000 topics</li>
+<li class=""><strong>Search Performance</strong>: Handle large search result sets</li>
+<li class=""><strong>Memory Management</strong>: Efficient memory usage for large content</li>
+<li class=""><strong>Storage Management</strong>: Handle large localStorage data</li>
+<li class=""><strong>Network Efficiency</strong>: Minimize network requests</li>
+</ul>
+<p>This functional specification provides the complete behavioral definition for the Windows 98 F1 Help System, ensuring all user interactions and system behaviors are clearly defined and implementable.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/melalawi/Abu-Specification/tree/main/docs/specifications/help-system-functional.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/Abu-98-Specification/docs/specifications/help-system"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Windows 98 F1 Help System Specification</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/Abu-98-Specification/docs/specifications/help-system-technical"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Windows 98 F1 Help System - Technical Specification</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#navigation-system" class="table-of-contents__link toc-highlight">Navigation System</a><ul><li><a href="#topic-navigation" class="table-of-contents__link toc-highlight">Topic Navigation</a></li><li><a href="#history-management" class="table-of-contents__link toc-highlight">History Management</a></li><li><a href="#home-navigation" class="table-of-contents__link toc-highlight">Home Navigation</a></li></ul></li><li><a href="#search-system" class="table-of-contents__link toc-highlight">Search System</a><ul><li><a href="#search-interface" class="table-of-contents__link toc-highlight">Search Interface</a></li><li><a href="#search-results" class="table-of-contents__link toc-highlight">Search Results</a></li><li><a href="#advanced-search-features" class="table-of-contents__link toc-highlight">Advanced Search Features</a></li></ul></li><li><a href="#bookmark-system" class="table-of-contents__link toc-highlight">Bookmark System</a><ul><li><a href="#bookmark-management" class="table-of-contents__link toc-highlight">Bookmark Management</a></li><li><a href="#bookmark-navigation" class="table-of-contents__link toc-highlight">Bookmark Navigation</a></li></ul></li><li><a href="#content-management" class="table-of-contents__link toc-highlight">Content Management</a><ul><li><a href="#topic-structure" class="table-of-contents__link toc-highlight">Topic Structure</a></li><li><a href="#content-rendering" class="table-of-contents__link toc-highlight">Content Rendering</a></li><li><a href="#content-updates" class="table-of-contents__link toc-highlight">Content Updates</a></li></ul></li><li><a href="#state-persistence" class="table-of-contents__link toc-highlight">State Persistence</a><ul><li><a href="#window-state" class="table-of-contents__link toc-highlight">Window State</a></li><li><a href="#application-state" class="table-of-contents__link toc-highlight">Application State</a></li><li><a href="#data-persistence" class="table-of-contents__link toc-highlight">Data Persistence</a></li></ul></li><li><a href="#keyboard-shortcuts" class="table-of-contents__link toc-highlight">Keyboard Shortcuts</a><ul><li><a href="#navigation-shortcuts" class="table-of-contents__link toc-highlight">Navigation Shortcuts</a></li><li><a href="#content-navigation" class="table-of-contents__link toc-highlight">Content Navigation</a></li><li><a href="#content-interaction" class="table-of-contents__link toc-highlight">Content Interaction</a></li><li><a href="#menu-navigation" class="table-of-contents__link toc-highlight">Menu Navigation</a></li></ul></li><li><a href="#context-sensitive-help" class="table-of-contents__link toc-highlight">Context-Sensitive Help</a><ul><li><a href="#f1-integration" class="table-of-contents__link toc-highlight">F1 Integration</a></li><li><a href="#context-help-display" class="table-of-contents__link toc-highlight">Context Help Display</a></li></ul></li><li><a href="#error-handling" class="table-of-contents__link toc-highlight">Error Handling</a><ul><li><a href="#content-errors" class="table-of-contents__link toc-highlight">Content Errors</a></li><li><a href="#system-errors" class="table-of-contents__link toc-highlight">System Errors</a></li><li><a href="#user-error-recovery" class="table-of-contents__link toc-highlight">User Error Recovery</a></li></ul></li><li><a href="#performance-requirements" class="table-of-contents__link toc-highlight">Performance Requirements</a><ul><li><a href="#response-times" class="table-of-contents__link toc-highlight">Response Times</a></li><li><a href="#memory-usage" class="table-of-contents__link toc-highlight">Memory Usage</a></li><li><a href="#scalability" class="table-of-contents__link toc-highlight">Scalability</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/design">Design System</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/specifications">Specifications</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Packages</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-web-kernel">Web Kernel</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-service">Service</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/melalawi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/shared">Shared Docs</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Abu OS. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
