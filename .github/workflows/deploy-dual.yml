@@ -1,0 +1,126 @@
+name: Deploy Dual Serving Architecture
+
+on:
+  push:
+    branches: [ mainline ]
+  pull_request:
+    branches: [ mainline ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm ci
+        
+    - name: Type check
+      run: npm run typecheck
+      
+    - name: Run unit tests
+      run: npm run test:run -- tests/unit
+      
+    - name: Run integration tests
+      run: npm run test:run -- tests/integration
+      
+    - name: Run style tests
+      run: npm run test:run -- tests/style
+      
+    - name: Run all tests with coverage
+      run: npm run test:coverage
+      
+    - name: Build Web Kernel
+      run: npm run build:web-kernel
+      
+    - name: Build Docusaurus
+      run: npm run build
+      
+    - name: Build dual architecture
+      run: npm run build:dual
+      
+    - name: Verify build output
+      run: |
+        echo "Verifying build output structure..."
+        ls -la build/
+        echo "Checking for Web Kernel files..."
+        ls -la build/web-kernel/ || echo "Web Kernel directory not found"
+        echo "Checking for Docusaurus files..."
+        ls -la build/docs/ || echo "Docusaurus docs directory not found"
+        echo "Checking for main index.html..."
+        test -f build/index.html && echo "Main index.html found" || echo "Main index.html not found"
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/mainline' && github.event_name == 'push'
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm ci
+        
+    - name: Run final test suite
+      run: |
+        echo "Running final comprehensive test suite before deployment..."
+        npm run test:coverage
+        
+    - name: Build dual architecture
+      run: npm run build:dual
+      
+    - name: Verify deployment readiness
+      run: |
+        echo "Verifying deployment readiness..."
+        echo "Checking build output structure..."
+        ls -la build/
+        echo "Checking for required files..."
+        test -f build/index.html && echo "✅ Main index.html found" || (echo "❌ Main index.html missing" && exit 1)
+        test -d build/web-kernel && echo "✅ Web Kernel directory found" || (echo "❌ Web Kernel directory missing" && exit 1)
+        test -d build/docs && echo "✅ Docusaurus docs directory found" || (echo "❌ Docusaurus docs directory missing" && exit 1)
+        echo "✅ All deployment requirements met"
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './build'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      
+    - name: Verify deployment
+      run: |
+        echo "Deployment completed successfully!"
+        echo "Site URL: ${{ steps.deployment.outputs.page_url }}"
+        echo "Web Kernel Help System: ${{ steps.deployment.outputs.page_url }}"
+        echo "Docusaurus Documentation: ${{ steps.deployment.outputs.page_url }}/docs"

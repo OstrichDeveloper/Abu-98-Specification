@@ -2,7 +2,14 @@
 
 > Comprehensive documentation for the Abu OS 98 ecosystem
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This website features a **dual serving architecture** that provides both a Windows 98 F1 Help System experience and traditional Docusaurus documentation.
+
+## Architecture
+
+- **Web Kernel Help System** (`/`) - Windows 98 F1 Help System interface built with the Abu Web Kernel
+- **Docusaurus Documentation** (`/docs/*`) - Traditional documentation website built with Docusaurus
+
+See [DUAL-SERVING-ARCHITECTURE.md](./DUAL-SERVING-ARCHITECTURE.md) for detailed information about the dual serving architecture.
 
 ## Installation
 
@@ -20,11 +27,29 @@ This command starts a local development server and opens up a browser window. Mo
 
 ## Build
 
+### Traditional Docusaurus Build
+
 ```bash
 npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Dual Architecture Build
+
+```bash
+npm run build:dual
+```
+
+This command builds both the Web Kernel Help System and Docusaurus documentation, then combines them into a single deployment structure.
+
+### Web Kernel Build Only
+
+```bash
+npm run build:web-kernel
+```
+
+This command builds only the Web Kernel component.
 
 ## Deployment
 
