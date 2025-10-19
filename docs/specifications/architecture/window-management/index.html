@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-specifications/architecture/window-management" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Window Management | Abu OS Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ostrichdeveloper.github.io/Abu-98-Specification/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ostrichdeveloper.github.io/Abu-98-Specification/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/architecture/window-management"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Window Management | Abu OS Documentation"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/Abu-98-Specification/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/architecture/window-management"><link data-rh="true" rel="alternate" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/architecture/window-management" hreflang="en"><link data-rh="true" rel="alternate" href="https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/architecture/window-management" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Window Management","item":"https://ostrichdeveloper.github.io/Abu-98-Specification/docs/specifications/architecture/window-management"}]}</script><link rel="stylesheet" href="/Abu-98-Specification/assets/css/styles.ad3d35f5.css">
+<script src="/Abu-98-Specification/assets/js/runtime~main.d9a5fde4.js" defer="defer"></script>
+<script src="/Abu-98-Specification/assets/js/main.23c8364b.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/Abu-98-Specification/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Abu-98-Specification/"><div class="navbar__logo"><img src="/Abu-98-Specification/img/logo.svg" alt="Abu OS Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/Abu-98-Specification/img/logo.svg" alt="Abu OS Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Abu OS</b></a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/design/">Design</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Abu-98-Specification/docs/specifications/">Specifications</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-web-kernel/">Web Kernel</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-enterprise/">Enterprise</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/abu-service/">Service</a><a class="navbar__item navbar__link" href="/Abu-98-Specification/docs/shared/">Shared</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/melalawi/Abu-Specification" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Abu-98-Specification/docs/specifications/"><span title="Technical Specifications" class="linkLabel_WmDU">Technical Specifications</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/Abu-98-Specification/docs/specifications/api/"><span title="README" class="categoryLinkLabel_W154">README</span></a><button aria-label="Expand sidebar category &#x27;README&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/Abu-98-Specification/docs/specifications/architecture/window-management"><span title="architecture" class="categoryLinkLabel_W154">architecture</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/window-management"><span title="Window Management" class="linkLabel_WmDU">Window Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/desktop-environment"><span title="Desktop Environment" class="linkLabel_WmDU">Desktop Environment</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/kernel-interface"><span title="Kernel Interface" class="linkLabel_WmDU">Kernel Interface</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/overview"><span title="Overview" class="linkLabel_WmDU">Overview</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/performance-model"><span title="Performance Model" class="linkLabel_WmDU">Performance Model</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/plugin-system"><span title="Plugin System" class="linkLabel_WmDU">Plugin System</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/state-management"><span title="State Management" class="linkLabel_WmDU">State Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Abu-98-Specification/docs/specifications/architecture/state-persistence"><span title="State Persistence" class="linkLabel_WmDU">State Persistence</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/Abu-98-Specification/docs/specifications/protocols/deployment-workflow"><span title="protocols" class="categoryLinkLabel_W154">protocols</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/Abu-98-Specification/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">architecture</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Window Management</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Window Management Specification</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>The Window Manager orchestrates the complete lifecycle of desktop windows: creation, positioning, sizing, focus management, state transitions, and destruction. It provides pixel-perfect Windows 98 window behavior while maintaining modern performance.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="responsibilities">Responsibilities<a href="#responsibilities" class="hash-link" aria-label="Direct link to Responsibilities" title="Direct link to Responsibilities" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="primary">Primary<a href="#primary" class="hash-link" aria-label="Direct link to Primary" title="Direct link to Primary" translate="no">​</a></h3>
+<ol>
+<li class="">Window lifecycle (open, close, minimize, maximize, restore)</li>
+<li class="">Position management (initial placement, drag, viewport constraints)</li>
+<li class="">Size management (initial sizing, resize, min/max enforcement)</li>
+<li class="">Focus management (z-index stack, click-to-focus, keyboard)</li>
+<li class="">State persistence (save/restore via localStorage)</li>
+<li class="">Plugin integration (dynamic component loading)</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="secondary">Secondary<a href="#secondary" class="hash-link" aria-label="Direct link to Secondary" title="Direct link to Secondary" translate="no">​</a></h3>
+<ol>
+<li class="">Taskbar coordination (window list synchronization)</li>
+<li class="">Desktop coordination (avoid icon overlap)</li>
+<li class="">Modal management (dialog boxes)</li>
+<li class="">Keyboard shortcuts (Alt+F4, Win+M, etc.)</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="window-state-schema">Window State Schema<a href="#window-state-schema" class="hash-link" aria-label="Direct link to Window State Schema" title="Direct link to Window State Schema" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="windowstate-interface">WindowState Interface<a href="#windowstate-interface" class="hash-link" aria-label="Direct link to WindowState Interface" title="Direct link to WindowState Interface" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">id: string                      // UUID v4</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pluginId: string                // Plugin identifier</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">title: string                   // Titlebar text</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">iconClass: string               // CSS class for icon</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">position: {x: number, y: number}     // Top-left corner (px)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">size: {width: number, height: number}  // Dimensions (px)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">zIndex: number                  // Stacking order</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">isMinimized: boolean            // Hidden from desktop</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">isMaximized: boolean            // Fills viewport (exclusive with isMinimized)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">isFocused: boolean              // Top of z-stack</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">isResizable: boolean            // Allow resize operations</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">preMaximizeBounds?: {           // Saved bounds before maximize</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  x: number,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  y: number,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  width: number,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  height: number</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="state-constraints">State Constraints<a href="#state-constraints" class="hash-link" aria-label="Direct link to State Constraints" title="Direct link to State Constraints" translate="no">​</a></h3>
+<p><strong>Position:</strong></p>
+<ul>
+<li class="">x: -9999 to window.innerWidth (allows partial off-screen)</li>
+<li class="">y: 0 to window.innerHeight - TASKBAR_HEIGHT - TITLEBAR_HEIGHT</li>
+<li class="">Minimum visible titlebar: 100px must remain on-screen</li>
+</ul>
+<p><strong>Size:</strong></p>
+<ul>
+<li class="">width: ≥ 200px (MIN_WINDOW_SIZE.width)</li>
+<li class="">height: ≥ 100px (MIN_WINDOW_SIZE.height)</li>
+<li class="">width: ≤ window.innerWidth - 40px</li>
+<li class="">height: ≤ window.innerHeight - TASKBAR_HEIGHT - 40px</li>
+</ul>
+<p><strong>State Exclusivity:</strong></p>
+<ul>
+<li class="">isMinimized AND isMaximized: <strong>Never both true</strong></li>
+<li class="">isMinimized: window not rendered</li>
+<li class="">isMaximized: position = {0, 0}, size = viewport - taskbar</li>
+</ul>
+<p><strong>Z-Index:</strong></p>
+<ul>
+<li class="">Base: Z_INDEX.WINDOW_BASE (100)</li>
+<li class="">Range: 100 to 100 + window count</li>
+<li class="">Focused window: highest z-index</li>
+<li class="">Compaction: Every 100 focus changes</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="state-transitions">State Transitions<a href="#state-transitions" class="hash-link" aria-label="Direct link to State Transitions" title="Direct link to State Transitions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="state-diagram">State Diagram<a href="#state-diagram" class="hash-link" aria-label="Direct link to State Diagram" title="Direct link to State Diagram" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[Closed] </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   ├─ open() ────────────────────┐</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │                             ▼</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │                         [Normal]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │                          │  │  │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    ┌─────────────────────┘  │  └──────┐</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    │ minimize()              │          │ maximize()</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    ▼                         │          ▼</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │ [Minimized]                  │      [Maximized]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    │                         │          │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    │ restore()               │          │ restore()</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │    └─────────────────────────┤          │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │                              │ ◄────────┘</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │                              │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   │ close()                      │ close()</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   ▼                              ▼</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[Closed]                       [Closed]</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="transition-rules">Transition Rules<a href="#transition-rules" class="hash-link" aria-label="Direct link to Transition Rules" title="Direct link to Transition Rules" translate="no">​</a></h3>
+<p><strong>open(pluginId, options?) → [Normal]</strong></p>
+<ul>
+<li class="">Creates new WindowState with unique ID</li>
+<li class="">Position: options.position OR cascade algorithm</li>
+<li class="">Size: options.size OR plugin.defaultSize OR DEFAULT_WINDOW_SIZE</li>
+<li class="">State: isMinimized=false, isMaximized=false, isFocused=true</li>
+<li class="">Z-Index: nextZIndex++</li>
+<li class="">Persistence: Debounced (500ms)</li>
+<li class="">Validation: Plugin must be registered, &lt; MAX_WINDOWS</li>
+<li class="">Side Effects: Focuses window, adds to taskbar</li>
+</ul>
+<p><strong>close(windowId) → [Closed]</strong></p>
+<ul>
+<li class="">Removes WindowState from collection</li>
+<li class="">Focus: If closed window was focused, focus next highest z-index</li>
+<li class="">Persistence: Immediate (no debounce)</li>
+<li class="">Side Effects: Removes from taskbar, plugin cleanup</li>
+</ul>
+<p><strong>minimize(windowId) → [Minimized]</strong></p>
+<ul>
+<li class="">Sets isMinimized=true, isFocused=false</li>
+<li class="">Focus: Next non-minimized window by z-index</li>
+<li class="">Rendering: Window component unmounts</li>
+<li class="">Taskbar: Button remains, grayed out</li>
+<li class="">Persistence: Debounced (500ms)</li>
+</ul>
+<p><strong>maximize(windowId) → [Maximized]</strong></p>
+<ul>
+<li class="">Saves current bounds to preMaximizeBounds</li>
+<li class="">Sets position={0, 0}</li>
+<li class="">Sets size={viewport.width, viewport.height - TASKBAR_HEIGHT}</li>
+<li class="">Sets isMaximized=true, isFocused=true</li>
+<li class="">Persistence: Debounced (500ms)</li>
+</ul>
+<p><strong>restore(windowId) → [Normal]</strong></p>
+<ul>
+<li class="">From Minimized: Sets isMinimized=false, isFocused=true</li>
+<li class="">From Maximized: Restores preMaximizeBounds, sets isMaximized=false</li>
+<li class="">Focus: Window brought to front</li>
+<li class="">Persistence: Debounced (500ms)</li>
+</ul>
+<p><strong>focus(windowId) → update isFocused</strong></p>
+<ul>
+<li class="">Sets target window isFocused=true</li>
+<li class="">Sets all other windows isFocused=false</li>
+<li class="">Updates z-index if window not already on top</li>
+<li class="">Side Effects: Taskbar button highlighted</li>
+<li class="">Persistence: None (focus changes too frequent)</li>
+<li class="">Special: If target isMinimized, calls restore() first</li>
+</ul>
+<p><strong>clearAllFocus() → unfocus all windows</strong></p>
+<ul>
+<li class="">Sets all windows&#x27; isFocused=false</li>
+<li class="">Resets focusedWindowId to null</li>
+<li class="">Visual: All windows show inactive titlebar</li>
+<li class="">Persistence: None (too frequent)</li>
+<li class="">Use cases: Desktop click, Escape key</li>
+</ul>
+<p><strong>move(windowId, position) → update position</strong></p>
+<ul>
+<li class="">Constraints: Apply viewport bounds (min visible titlebar)</li>
+<li class="">Blocked: If isMaximized=true</li>
+<li class="">Side Effects: None</li>
+<li class="">Persistence: Debounced (500ms)</li>
+</ul>
+<p><strong>resize(windowId, size, position?) → update size/position</strong></p>
+<ul>
+<li class="">Constraints: width ≥ 200px, height ≥ 100px</li>
+<li class="">Blocked: If isMaximized=true OR isResizable=false</li>
+<li class="">Position update: For top/left handle resize</li>
+<li class="">Side Effects: None</li>
+<li class="">Persistence: Debounced (500ms)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="position-management">Position Management<a href="#position-management" class="hash-link" aria-label="Direct link to Position Management" title="Direct link to Position Management" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cascade-algorithm">Cascade Algorithm<a href="#cascade-algorithm" class="hash-link" aria-label="Direct link to Cascade Algorithm" title="Direct link to Cascade Algorithm" translate="no">​</a></h3>
+<p>New windows open in cascading pattern:</p>
+<p><strong>Algorithm:</strong></p>
+<ol>
+<li class="">Start: x=100, y=100</li>
+<li class="">Each new window: x += 32px, y += 32px</li>
+<li class="">Reset: After offset &gt; 160px (5 windows)</li>
+<li class="">Result: Staircase pattern (like Windows 98)</li>
+</ol>
+<p><strong>Constants:</strong></p>
+<ul>
+<li class="">CASCADE_STEP: 32px</li>
+<li class="">CASCADE_MAX: 160px (5 * 32px)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="viewport-constraints">Viewport Constraints<a href="#viewport-constraints" class="hash-link" aria-label="Direct link to Viewport Constraints" title="Direct link to Viewport Constraints" translate="no">​</a></h3>
+<p><strong>Horizontal:</strong></p>
+<ul>
+<li class="">Minimum visible width: 100px of titlebar</li>
+<li class="">Allow partial off-screen: x ≥ (- window.width + 100)</li>
+<li class="">Right boundary: x ≤ viewport.width - 100</li>
+</ul>
+<p><strong>Vertical:</strong></p>
+<ul>
+<li class="">Top boundary: y ≥ 0</li>
+<li class="">Bottom boundary: y ≤ viewport.height - TASKBAR_HEIGHT - TITLEBAR_HEIGHT</li>
+</ul>
+<p><strong>Maximize Bounds:</strong></p>
+<ul>
+<li class="">Position: <!-- -->0</li>
+<li class="">Width: viewport.width</li>
+<li class="">Height: viewport.height - TASKBAR_HEIGHT</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="snap-to-edge-future">Snap-to-Edge (Future)<a href="#snap-to-edge-future" class="hash-link" aria-label="Direct link to Snap-to-Edge (Future)" title="Direct link to Snap-to-Edge (Future)" translate="no">​</a></h3>
+<ul>
+<li class="">Threshold: 10px from edge</li>
+<li class="">Snap positions: Left edge (x=0), Right edge (x=max), Top (y=0)</li>
+<li class="">Behavior: Magnetic attraction during drag</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="focus-management">Focus Management<a href="#focus-management" class="hash-link" aria-label="Direct link to Focus Management" title="Direct link to Focus Management" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="z-index-stack">Z-Index Stack<a href="#z-index-stack" class="hash-link" aria-label="Direct link to Z-Index Stack" title="Direct link to Z-Index Stack" translate="no">​</a></h3>
+<p><strong>Ordering:</strong></p>
+<ul>
+<li class="">Windows sorted by z-index (highest = topmost)</li>
+<li class="">Focused window = highest z-index</li>
+<li class="">Base z-index: Z_INDEX.WINDOW_BASE (100)</li>
+<li class="">Increment: +1 per window</li>
+</ul>
+<p><strong>Focus Rules:</strong></p>
+<ul>
+<li class="">Click anywhere on window → focus</li>
+<li class="">Open new window → auto-focus</li>
+<li class="">Close focused window → focus next highest</li>
+<li class="">Minimize focused window → focus next visible</li>
+<li class="">Taskbar button click → focus/restore window</li>
+</ul>
+<p><strong>Z-Index Compaction:</strong></p>
+<ul>
+<li class="">Trigger: Every 100 focus operations</li>
+<li class="">Algorithm: Re-assign z-indices sequentially (100, 101, 102, ...)</li>
+<li class="">Purpose: Prevent unbounded growth</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="keyboard-shortcuts">Keyboard Shortcuts<a href="#keyboard-shortcuts" class="hash-link" aria-label="Direct link to Keyboard Shortcuts" title="Direct link to Keyboard Shortcuts" translate="no">​</a></h3>
+<table><thead><tr><th>Shortcut</th><th>Action</th><th>Condition</th></tr></thead><tbody><tr><td>Alt+F4</td><td>Close focused window</td><td>Window focused</td></tr><tr><td>Win+M</td><td>Minimize all windows</td><td>Any</td></tr><tr><td>Win+Shift+M</td><td>Restore all windows</td><td>Any</td></tr><tr><td>Alt+Tab</td><td>Focus next window</td><td>&gt;1 window (future)</td></tr><tr><td>Alt+Shift+Tab</td><td>Focus previous window</td><td>&gt;1 window (future)</td></tr><tr><td>Esc</td><td>Close modal</td><td>Modal window focused (future)</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="persistence-specification">Persistence Specification<a href="#persistence-specification" class="hash-link" aria-label="Direct link to Persistence Specification" title="Direct link to Persistence Specification" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="save-to-localstorage">Save to localStorage<a href="#save-to-localstorage" class="hash-link" aria-label="Direct link to Save to localStorage" title="Direct link to Save to localStorage" translate="no">​</a></h3>
+<p><strong>Key:</strong> <code>abu-os-98:state:v1</code></p>
+<p><strong>Saved Data (per window):</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">{</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  pluginId: string,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  position: {x, y},</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  size: {width, height},</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  state: &#x27;normal&#x27; | &#x27;minimized&#x27; | &#x27;maximized&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  preMaximizeBounds?: {x, y, width, height}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre></div></div>
+<p><strong>Trigger Conditions:</strong></p>
+<table><thead><tr><th>Action</th><th>Debounce</th></tr></thead><tbody><tr><td>open()</td><td>500ms</td></tr><tr><td>close()</td><td>Immediate</td></tr><tr><td>minimize()</td><td>500ms</td></tr><tr><td>maximize()</td><td>500ms</td></tr><tr><td>restore()</td><td>500ms</td></tr><tr><td>move()</td><td>500ms</td></tr><tr><td>resize()</td><td>500ms</td></tr><tr><td>focus()</td><td>None (not persisted)</td></tr></tbody></table>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li class="">QuotaExceededError: Clear expired state (TTL &gt; 7 days), retry once</li>
+<li class="">SecurityError: Fallback to in-memory storage</li>
+<li class="">SyntaxError: Log error, continue with defaults</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="restore-from-localstorage">Restore from localStorage<a href="#restore-from-localstorage" class="hash-link" aria-label="Direct link to Restore from localStorage" title="Direct link to Restore from localStorage" translate="no">​</a></h3>
+<p><strong>Trigger:</strong> Application initialization (Shell mount)</p>
+<p><strong>Process:</strong></p>
+<ol>
+<li class="">Read key <code>abu-os-98:state:v1</code></li>
+<li class="">Validate schema version (current: 1)</li>
+<li class="">Check TTL (max: 7 days)</li>
+<li class="">For each window state:
+a. Verify plugin registered
+b. Call open(pluginId, {position, size})
+c. Apply state (minimized/maximized)</li>
+<li class="">Ignore invalid entries (log warning)</li>
+</ol>
+<p><strong>Validation Rules:</strong></p>
+<ul>
+<li class="">Missing plugin: Skip window, log warning</li>
+<li class="">Invalid position: Use cascade default</li>
+<li class="">Invalid size: Use plugin default or MIN_WINDOW_SIZE</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="dimensions--constants">Dimensions &amp; Constants<a href="#dimensions--constants" class="hash-link" aria-label="Direct link to Dimensions &amp; Constants" title="Direct link to Dimensions &amp; Constants" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="window-constraints">Window Constraints<a href="#window-constraints" class="hash-link" aria-label="Direct link to Window Constraints" title="Direct link to Window Constraints" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">MIN_WINDOW_SIZE:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  width: 200px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  height: 100px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">DEFAULT_WINDOW_SIZE:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  width: 600px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  height: 400px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">MAX_WINDOW_SIZE (computed):</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  width: viewport.width - 40px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  height: viewport.height - TASKBAR_HEIGHT - 40px</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="window-chrome">Window Chrome<a href="#window-chrome" class="hash-link" aria-label="Direct link to Window Chrome" title="Direct link to Window Chrome" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">TITLEBAR_HEIGHT: 24px</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">RESIZE_HANDLE_SIZE: 8px (on each edge)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">DRAG_THRESHOLD: 3px (before drag starts)</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="system-limits">System Limits<a href="#system-limits" class="hash-link" aria-label="Direct link to System Limits" title="Direct link to System Limits" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">MAX_WINDOWS: 20</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Z_INDEX.WINDOW_BASE: 100</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Z_INDEX_COMPACT_THRESHOLD: 100 focus operations</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="performance-targets">Performance Targets<a href="#performance-targets" class="hash-link" aria-label="Direct link to Performance Targets" title="Direct link to Performance Targets" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">STORAGE_DEBOUNCE_MS: 500ms</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">FOCUS_CHANGE_MAX_FREQUENCY: 60 fps</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">RENDER_ONLY_VISIBLE: true (minimized windows not rendered)</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="modal-windows-future">Modal Windows (Future)<a href="#modal-windows-future" class="hash-link" aria-label="Direct link to Modal Windows (Future)" title="Direct link to Modal Windows (Future)" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modal-state">Modal State<a href="#modal-state" class="hash-link" aria-label="Direct link to Modal State" title="Direct link to Modal State" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">isModal: boolean</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">parentId: string | null          // Parent window ID</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">disableParent: boolean           // Disable interaction with parent</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modal-behavior">Modal Behavior<a href="#modal-behavior" class="hash-link" aria-label="Direct link to Modal Behavior" title="Direct link to Modal Behavior" translate="no">​</a></h3>
+<ul>
+<li class="">Modal window z-index: Always &gt; parent z-index</li>
+<li class="">Click parent: Focus modal instead</li>
+<li class="">Close modal: Return focus to parent</li>
+<li class="">Esc key: Close modal</li>
+<li class="">Parent cannot be focused while modal open (if disableParent=true)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="error-conditions">Error Conditions<a href="#error-conditions" class="hash-link" aria-label="Direct link to Error Conditions" title="Direct link to Error Conditions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="invalid-operations">Invalid Operations<a href="#invalid-operations" class="hash-link" aria-label="Direct link to Invalid Operations" title="Direct link to Invalid Operations" translate="no">​</a></h3>
+<table><thead><tr><th>Operation</th><th>Condition</th><th>Behavior</th></tr></thead><tbody><tr><td>open()</td><td>Plugin not registered</td><td>Throw Error</td></tr><tr><td>open()</td><td>MAX_WINDOWS reached</td><td>Throw Error</td></tr><tr><td>close()</td><td>Window not found</td><td>Silent ignore</td></tr><tr><td>minimize()</td><td>Window not found</td><td>Silent ignore</td></tr><tr><td>maximize()</td><td>Window not found</td><td>Silent ignore</td></tr><tr><td>restore()</td><td>Window not found</td><td>Silent ignore</td></tr><tr><td>focus()</td><td>Window not found</td><td>Silent ignore</td></tr><tr><td>move()</td><td>Window maximized</td><td>Silent ignore</td></tr><tr><td>resize()</td><td>Window maximized</td><td>Silent ignore</td></tr><tr><td>resize()</td><td>Window not resizable</td><td>Silent ignore</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="recovery-strategies">Recovery Strategies<a href="#recovery-strategies" class="hash-link" aria-label="Direct link to Recovery Strategies" title="Direct link to Recovery Strategies" translate="no">​</a></h3>
+<p><strong>localStorage Failure:</strong></p>
+<ol>
+<li class="">Detect: Try/catch on localStorage operations</li>
+<li class="">Fallback: In-memory <code>Map&lt;string, string&gt;</code></li>
+<li class="">Warning: Log once on startup</li>
+<li class="">Behavior: State lost on refresh (expected)</li>
+</ol>
+<p><strong>Invalid Restore Data:</strong></p>
+<ol>
+<li class="">Detect: JSON.parse error OR schema validation failure</li>
+<li class="">Action: Log error, skip invalid window</li>
+<li class="">Continue: Restore remaining valid windows</li>
+<li class="">Persistence: Overwrite with valid state on next save</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="testing-requirements">Testing Requirements<a href="#testing-requirements" class="hash-link" aria-label="Direct link to Testing Requirements" title="Direct link to Testing Requirements" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="unit-test-coverage">Unit Test Coverage<a href="#unit-test-coverage" class="hash-link" aria-label="Direct link to Unit Test Coverage" title="Direct link to Unit Test Coverage" translate="no">​</a></h3>
+<p><strong>Window Lifecycle:</strong></p>
+<ul>
+<li class="">open() → creates window with correct defaults</li>
+<li class="">open() with options → uses provided position/size</li>
+<li class="">open() exceeding MAX_WINDOWS → throws error</li>
+<li class="">close() focused window → focuses next window</li>
+<li class="">close() only window → no focused window</li>
+<li class="">minimize() → sets isMinimized=true, isFocused=false</li>
+<li class="">maximize() → saves bounds, fills viewport</li>
+<li class="">restore() from minimized → shows window, focuses</li>
+<li class="">restore() from maximized → restores bounds</li>
+</ul>
+<p><strong>Focus Management:</strong></p>
+<ul>
+<li class="">focus() → sets isFocused=true</li>
+<li class="">focus() → unfocuses other windows</li>
+<li class="">focus() minimized window → restores first</li>
+<li class="">focus() updates z-index</li>
+<li class="">focus() 100 times → triggers compaction</li>
+</ul>
+<p><strong>Position/Size:</strong></p>
+<ul>
+<li class="">move() → updates position</li>
+<li class="">move() maximized → no change</li>
+<li class="">resize() → updates size</li>
+<li class="">resize() enforces MIN_WINDOW_SIZE</li>
+<li class="">resize() when not resizable → no change</li>
+</ul>
+<p><strong>Persistence:</strong></p>
+<ul>
+<li class="">open() → debounced localStorage write</li>
+<li class="">close() → immediate localStorage write</li>
+<li class="">restore() valid state → recreates windows</li>
+<li class="">restore() expired state (TTL) → ignores</li>
+<li class="">restore() invalid plugin → skips window</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="integration-test-coverage">Integration Test Coverage<a href="#integration-test-coverage" class="hash-link" aria-label="Direct link to Integration Test Coverage" title="Direct link to Integration Test Coverage" translate="no">​</a></h3>
+<p><strong>Full Workflows:</strong></p>
+<ol>
+<li class="">Open window → drag → resize → close → verify localStorage</li>
+<li class="">Open multiple windows → close middle → verify focus shift</li>
+<li class="">Maximize window → restore → verify bounds restored</li>
+<li class="">Minimize all → restore all → verify states</li>
+<li class="">Refresh page → verify windows restored with correct state</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="performance-optimizations">Performance Optimizations<a href="#performance-optimizations" class="hash-link" aria-label="Direct link to Performance Optimizations" title="Direct link to Performance Optimizations" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rendering">Rendering<a href="#rendering" class="hash-link" aria-label="Direct link to Rendering" title="Direct link to Rendering" translate="no">​</a></h3>
+<ul>
+<li class="">Virtual rendering: Only render visible (not minimized) windows</li>
+<li class="">Lazy mount: Plugin components loaded on-demand</li>
+<li class="">Unmount on minimize: Free DOM resources</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="persistence">Persistence<a href="#persistence" class="hash-link" aria-label="Direct link to Persistence" title="Direct link to Persistence" translate="no">​</a></h3>
+<ul>
+<li class="">Debounced writes: Avoid excessive localStorage I/O</li>
+<li class="">Batch updates: Multiple changes within window → single write</li>
+<li class="">Immediate critical: close() writes immediately</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="focus-management-1">Focus Management<a href="#focus-management-1" class="hash-link" aria-label="Direct link to Focus Management" title="Direct link to Focus Management" translate="no">​</a></h3>
+<ul>
+<li class="">Z-index compaction: Prevent unbounded growth</li>
+<li class="">Focus filtering: Ignore rapid focus changes (less than 16ms)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
+<p>Window Management provides:</p>
+<ul>
+<li class=""><strong>Complete lifecycle</strong> - Open, close, minimize, maximize, restore</li>
+<li class=""><strong>Position/size control</strong> - Cascade, drag, resize, constraints</li>
+<li class=""><strong>Focus management</strong> - Z-index stack, keyboard shortcuts</li>
+<li class=""><strong>State persistence</strong> - Automatic localStorage save/restore</li>
+<li class=""><strong>Windows 98 fidelity</strong> - Pixel-perfect behavior</li>
+<li class=""><strong>Performance</strong> - Debouncing, virtual rendering, compaction</li>
+</ul>
+<p>Dimensions, constraints, and behaviors precisely defined for implementation.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/melalawi/Abu-Specification/tree/main/docs/specifications/architecture/window-management.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/Abu-98-Specification/docs/specifications/api/types"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Types</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/Abu-98-Specification/docs/specifications/architecture/desktop-environment"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Desktop Environment</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#responsibilities" class="table-of-contents__link toc-highlight">Responsibilities</a><ul><li><a href="#primary" class="table-of-contents__link toc-highlight">Primary</a></li><li><a href="#secondary" class="table-of-contents__link toc-highlight">Secondary</a></li></ul></li><li><a href="#window-state-schema" class="table-of-contents__link toc-highlight">Window State Schema</a><ul><li><a href="#windowstate-interface" class="table-of-contents__link toc-highlight">WindowState Interface</a></li><li><a href="#state-constraints" class="table-of-contents__link toc-highlight">State Constraints</a></li></ul></li><li><a href="#state-transitions" class="table-of-contents__link toc-highlight">State Transitions</a><ul><li><a href="#state-diagram" class="table-of-contents__link toc-highlight">State Diagram</a></li><li><a href="#transition-rules" class="table-of-contents__link toc-highlight">Transition Rules</a></li></ul></li><li><a href="#position-management" class="table-of-contents__link toc-highlight">Position Management</a><ul><li><a href="#cascade-algorithm" class="table-of-contents__link toc-highlight">Cascade Algorithm</a></li><li><a href="#viewport-constraints" class="table-of-contents__link toc-highlight">Viewport Constraints</a></li><li><a href="#snap-to-edge-future" class="table-of-contents__link toc-highlight">Snap-to-Edge (Future)</a></li></ul></li><li><a href="#focus-management" class="table-of-contents__link toc-highlight">Focus Management</a><ul><li><a href="#z-index-stack" class="table-of-contents__link toc-highlight">Z-Index Stack</a></li><li><a href="#keyboard-shortcuts" class="table-of-contents__link toc-highlight">Keyboard Shortcuts</a></li></ul></li><li><a href="#persistence-specification" class="table-of-contents__link toc-highlight">Persistence Specification</a><ul><li><a href="#save-to-localstorage" class="table-of-contents__link toc-highlight">Save to localStorage</a></li><li><a href="#restore-from-localstorage" class="table-of-contents__link toc-highlight">Restore from localStorage</a></li></ul></li><li><a href="#dimensions--constants" class="table-of-contents__link toc-highlight">Dimensions &amp; Constants</a><ul><li><a href="#window-constraints" class="table-of-contents__link toc-highlight">Window Constraints</a></li><li><a href="#window-chrome" class="table-of-contents__link toc-highlight">Window Chrome</a></li><li><a href="#system-limits" class="table-of-contents__link toc-highlight">System Limits</a></li><li><a href="#performance-targets" class="table-of-contents__link toc-highlight">Performance Targets</a></li></ul></li><li><a href="#modal-windows-future" class="table-of-contents__link toc-highlight">Modal Windows (Future)</a><ul><li><a href="#modal-state" class="table-of-contents__link toc-highlight">Modal State</a></li><li><a href="#modal-behavior" class="table-of-contents__link toc-highlight">Modal Behavior</a></li></ul></li><li><a href="#error-conditions" class="table-of-contents__link toc-highlight">Error Conditions</a><ul><li><a href="#invalid-operations" class="table-of-contents__link toc-highlight">Invalid Operations</a></li><li><a href="#recovery-strategies" class="table-of-contents__link toc-highlight">Recovery Strategies</a></li></ul></li><li><a href="#testing-requirements" class="table-of-contents__link toc-highlight">Testing Requirements</a><ul><li><a href="#unit-test-coverage" class="table-of-contents__link toc-highlight">Unit Test Coverage</a></li><li><a href="#integration-test-coverage" class="table-of-contents__link toc-highlight">Integration Test Coverage</a></li></ul></li><li><a href="#performance-optimizations" class="table-of-contents__link toc-highlight">Performance Optimizations</a><ul><li><a href="#rendering" class="table-of-contents__link toc-highlight">Rendering</a></li><li><a href="#persistence" class="table-of-contents__link toc-highlight">Persistence</a></li><li><a href="#focus-management-1" class="table-of-contents__link toc-highlight">Focus Management</a></li></ul></li><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/design">Design System</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/specifications">Specifications</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Packages</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-web-kernel">Web Kernel</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/abu-service">Service</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/melalawi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a class="footer__link-item" href="/Abu-98-Specification/docs/shared">Shared Docs</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Abu OS. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
