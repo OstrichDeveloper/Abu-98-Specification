@@ -5,21 +5,18 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/demo');
     
-    // Wait for the demo page to load by waiting for the iframe element
-    await page.waitForSelector('iframe[src*="web-kernel-demo.html"]', { timeout: 5000 });
+    // Wait for React to hydrate
+    await page.waitForSelector('#__docusaurus', { timeout: 5000 });
     
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
-    await iframe.locator('#app').waitFor({ state: 'visible', timeout: 5000 });
-    await iframe.locator('.desktop').waitFor({ state: 'visible', timeout: 5000 });
+    // Wait for the Web Kernel to load
+    await page.waitForSelector('.desktop, .shell, [data-testid="desktop"]', { timeout: 10000 });
   });
 
   test('should load the demo page and show Windows 98 interface', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
-    
     // Check that the main interface elements are present
-    await expect(iframe.locator('.desktop')).toBeVisible();
-    await expect(iframe.locator('.taskbar')).toBeVisible();
-    await expect(iframe.locator('.start-button')).toBeVisible();
+    await expect(page.locator('.desktop, .shell, [data-testid="desktop"]').first()).toBeVisible();
+    await expect(page.locator('.taskbar')).toBeVisible();
+    await expect(page.locator('.start-button')).toBeVisible();
     
     // Take a screenshot of the initial state
     await page.screenshot({ 
@@ -29,13 +26,12 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should open start menu and select an option', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Click the start button
-    await iframe.locator('.start-button').click();
+    await page.locator('.start-button').click();
     
     // Wait for start menu to appear
-    await expect(iframe.locator('.start-menu')).toBeVisible();
+    await expect(page.locator('.start-menu')).toBeVisible();
     
     // Take screenshot of start menu
     await page.screenshot({ 
@@ -44,7 +40,7 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
     });
     
     // Look for a menu item to click (Help Topics or similar)
-    const menuItem = iframe.locator('.start-menu-item').first();
+    const menuItem = page.locator('.start-menu-item').first();
     if (await menuItem.isVisible()) {
       await menuItem.click();
       
@@ -60,10 +56,9 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should interact with desktop icons', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Look for desktop icons
-    const desktopIcons = iframe.locator('.desktop-icon');
+    const desktopIcons = page.locator('.desktop-icon');
     const iconCount = await desktopIcons.count();
     
     if (iconCount > 0) {
@@ -82,14 +77,13 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should open and interact with windows', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Try to open a window by clicking start menu and selecting an option
-    await iframe.locator('.start-button').click();
-    await expect(iframe.locator('.start-menu')).toBeVisible();
+    await page.locator('.start-button').click();
+    await expect(page.locator('.start-menu')).toBeVisible();
     
     // Look for Help Topics or similar option
-    const helpMenuItem = iframe.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
+    const helpMenuItem = page.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
     
     if (await helpMenuItem.isVisible()) {
       await helpMenuItem.click();
@@ -98,7 +92,7 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
       await page.waitForTimeout(3000);
       
       // Look for any open windows
-      const windows = iframe.locator('.window');
+      const windows = page.locator('.window');
       const windowCount = await windows.count();
       
       if (windowCount > 0) {
@@ -155,12 +149,11 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should verify Windows 98 styling and aesthetics', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Check for Windows 98 specific styling
-    const desktop = iframe.locator('.desktop');
-    const taskbar = iframe.locator('.taskbar');
-    const startButton = iframe.locator('.start-button');
+    const desktop = page.locator('.desktop');
+    const taskbar = page.locator('.taskbar');
+    const startButton = page.locator('.start-button');
     
     // Verify elements are styled correctly
     await expect(desktop).toBeVisible();
@@ -191,19 +184,18 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should handle window management operations', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Try to open a window first
-    await iframe.locator('.start-button').click();
-    await expect(iframe.locator('.start-menu')).toBeVisible();
+    await page.locator('.start-button').click();
+    await expect(page.locator('.start-menu')).toBeVisible();
     
-    const helpMenuItem = iframe.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
+    const helpMenuItem = page.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
     
     if (await helpMenuItem.isVisible()) {
       await helpMenuItem.click();
       await page.waitForTimeout(3000);
       
-      const windows = iframe.locator('.window');
+      const windows = page.locator('.window');
       const windowCount = await windows.count();
       
       if (windowCount > 0) {
@@ -249,7 +241,6 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should test keyboard interactions', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Test keyboard shortcuts
     await page.keyboard.press('Escape'); // Should close any open menus
@@ -269,16 +260,15 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   });
 
   test('should handle rapid interactions and stress test', async ({ page }) => {
-    const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     
     // Rapid clicking on start button
     for (let i = 0; i < 5; i++) {
-      await iframe.locator('.start-button').click();
+      await page.locator('.start-button').click();
       await page.waitForTimeout(200);
     }
     
     // Rapid window operations if any windows are open
-    const windows = iframe.locator('.window');
+    const windows = page.locator('.window');
     const windowCount = await windows.count();
     
     if (windowCount > 0) {
