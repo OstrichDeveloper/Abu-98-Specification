@@ -3,14 +3,14 @@ import { test, expect } from '@playwright/test';
 test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto('/demo.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('/demo');
+    
+    // Wait for the demo page to load by waiting for the iframe element
     await page.waitForSelector('iframe[src*="web-kernel-demo.html"]', { timeout: 5000 });
     
     const iframe = page.frameLocator('iframe[src*="web-kernel-demo.html"]');
     await iframe.locator('#app').waitFor({ state: 'visible', timeout: 5000 });
     await iframe.locator('.desktop').waitFor({ state: 'visible', timeout: 5000 });
-    await page.waitForTimeout(1000);
   });
 
   test('should load the demo page and show Windows 98 interface', async ({ page }) => {

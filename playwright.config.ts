@@ -54,8 +54,7 @@ export default defineConfig({
     stdout: 'pipe',
     stderr: 'pipe',
     env: {
-      NODE_ENV: 'test',
-      CI: 'true'
+      NODE_ENV: 'development'
     }
   },
 });

@@ -4,103 +4,241 @@
  * work well for content-centric websites.
  */
 
-/* Windows 98 Global Theme */
+/* Import ALL Windows 98 styles from web kernel */
+@import '@melalawi/abu-web-kernel/styles';
+
+/* Map Docusaurus Infima variables to web kernel variables */
 :root {
-  --ifm-font-family-base: 'MS Sans Serif', sans-serif;
-  --ifm-color-primary: #0a246a;
-  --ifm-color-primary-dark: #091f5a;
-  --ifm-color-primary-darker: #081d55;
-  --ifm-color-primary-darkest: #061846;
-  --ifm-color-primary-light: #0b297a;
-  --ifm-color-primary-lighter: #0c2b7f;
-  --ifm-color-primary-lightest: #0e3294;
-  --ifm-background-color: #c0c0c0;
-  --ifm-color-content: #000000;
-  --ifm-code-font-size: 95%;
+  /* Fonts */
+  --ifm-font-family-base: 'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+  --ifm-font-family-monospace: 'Courier New', Courier, monospace;
+  --ifm-font-size-base: 11px;
+  
+  /* Colors - Windows 98 palette from web kernel */
+  --ifm-color-primary: var(--color-highlight);
+  --ifm-color-primary-dark: var(--color-highlight);
+  --ifm-color-primary-darker: var(--color-highlight);
+  --ifm-color-primary-darkest: var(--color-highlight);
+  --ifm-color-primary-light: var(--color-highlight);
+  --ifm-color-primary-lighter: var(--color-highlight);
+  --ifm-color-primary-lightest: var(--color-highlight);
+  
+  /* Background colors */
+  --ifm-background-color: var(--color-button-face);
+  --ifm-background-surface-color: var(--color-button-face);
+  
+  /* Text colors */
+  --ifm-color-content: var(--color-window-text);
+  --ifm-heading-color: var(--color-window-text);
+  
+  /* Navbar */
+  --ifm-navbar-background-color: var(--color-button-face);
+  --ifm-navbar-height: 28px;
+  
+  /* Sidebar */
+  --ifm-sidebar-width: 250px;
+  
+  /* Code */
+  --ifm-code-font-size: 11px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark theme mapping */
 [data-theme='dark'] {
-  --ifm-color-primary: #0a246a;
-  --ifm-color-primary-dark: #091f5a;
-  --ifm-color-primary-darker: #081d55;
-  --ifm-color-primary-darkest: #061846;
-  --ifm-color-primary-light: #0b297a;
-  --ifm-color-primary-lighter: #0c2b7f;
-  --ifm-color-primary-lightest: #0e3294;
-  --ifm-background-color: #c0c0c0;
-  --ifm-color-content: #000000;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: var(--color-window-text);
+  --ifm-background-surface-color: var(--color-window-text);
+  --ifm-color-content: var(--color-window-text);
+  --ifm-heading-color: var(--color-window-text);
+  --ifm-navbar-background-color: var(--color-window-text);
 }
 
-/* Windows 98 Scrollbars */
-::-webkit-scrollbar {
-  width: 16px;
-  height: 16px;
+/* Windows 98 Help System Structure */
+.help-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--ifm-background-color);
+  font-family: var(--ifm-font-family-base);
 }
 
-::-webkit-scrollbar-track {
-  background: #c0c0c0;
-  border: 1px inset #c0c0c0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
-  border: 1px outset #c0c0c0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d4d0c8;
-}
-
-::-webkit-scrollbar-corner {
-  background: #c0c0c0;
-}
-
-/* Windows 98 Navigation */
-.navbar {
+.help-menu-bar {
+  height: 22px;
   background: #c0c0c0;
   border-bottom: 1px solid #808080;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.navbar__brand {
-  color: #000;
-  font-family: 'MS Sans Serif', sans-serif;
-  font-weight: bold;
-}
-
-.navbar__item {
-  color: #000;
-  font-family: 'MS Sans Serif', sans-serif;
-}
-
-/* Windows 98 Sidebar */
-.theme-doc-sidebar-container {
-  background: #c0c0c0;
-  border-right: 1px solid #808080;
-}
-
-.menu__link {
-  color: #000;
-  font-family: 'MS Sans Serif', sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
   font-size: 11px;
 }
 
-.menu__link:hover {
-  background: #d4d0c8;
-  color: #000;
+.help-menu-item {
+  padding: 2px 8px;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* Windows 98 Content */
-.main-wrapper {
+.help-menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+}
+
+.help-toolbar {
+  height: 28px;
   background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 2px;
+}
+
+.help-toolbar-button {
+  width: 24px;
+  height: 24px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.help-toolbar-button:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.help-toolbar-separator {
+  width: 2px;
+  height: 20px;
+  background: #808080;
+  margin: 0 4px;
+}
+
+.help-tab-bar {
+  height: 24px;
+  background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  display: flex;
+}
+
+.help-tab {
+  padding: 2px 12px;
+  font-size: 11px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: none;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.help-tab.active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 1px solid #c0c0c0;
+  margin-bottom: -1px;
+}
+
+.help-main-content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.help-status-bar {
+  height: 22px;
+  background: var(--color-button-face);
+  border-top: 1px solid var(--color-button-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+/* Apply Windows 98 styling to Docusaurus elements */
+.navbar {
+  background: var(--color-button-face) !important;
+  border-bottom: 1px solid var(--color-button-shadow);
+  box-shadow: none;
+  height: 28px;
+  padding: 0 8px;
+}
+
+.navbar__link {
+  color: var(--color-window-text);
+  font-size: 11px;
+  font-family: var(--ifm-font-family-base);
+  padding: 4px 8px;
+}
+
+.navbar__link:hover {
+  background: var(--color-highlight);
+  color: var(--color-highlight-text);
+}
+
+.navbar__brand {
+  color: var(--color-window-text);
+  font-weight: bold;
+}
+
+.theme-doc-sidebar-container {
+  background: var(--color-button-face) !important;
+  border-right: 1px solid var(--color-button-shadow);
+}
+
+.menu {
+  padding: 4px;
+  font-size: 11px;
+}
+
+.menu__link {
+  color: var(--color-window-text);
+  font-size: 11px;
+  padding: 1px 2px 1px 20px;
+  border-radius: 0;
+}
+
+.menu__link:hover {
+  background: var(--color-highlight);
+  color: var(--color-highlight-text);
+}
+
+.menu__link--active {
+  background: var(--color-highlight);
+  color: var(--color-highlight-text);
+}
+
+.menu__list-item::before {
+  content: '📄';
+  position: absolute;
+  left: 4px;
+  font-size: 12px;
+}
+
+.menu__list-item--collapsed::before {
+  content: '📁';
+}
+
+.main-wrapper {
+  background: var(--color-button-face) !important;
 }
 
 .theme-doc-markdown {
-  background: #c0c0c0;
-  color: #000;
+  background: var(--input-background);
+  color: var(--color-window-text);
+  padding: 16px;
+  border: 2px solid;
+  border-color: var(--color-button-shadow) var(--color-button-highlight) var(--color-button-highlight) var(--color-button-shadow);
 }
 
 .theme-doc-markdown h1,
@@ -109,7 +247,153 @@
 .theme-doc-markdown h4,
 .theme-doc-markdown h5,
 .theme-doc-markdown h6 {
-  color: #000;
-  font-family: 'MS Sans Serif', sans-serif;
+  color: var(--color-window-text);
+  font-family: var(--ifm-font-family-base);
   font-weight: bold;
+  border-bottom: 1px solid var(--color-button-shadow);
+  padding-bottom: 4px;
+}
+
+.theme-doc-markdown a {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+.theme-doc-markdown a:visited {
+  color: #800080;
+}
+
+.theme-doc-markdown code {
+  background: var(--color-button-face);
+  border: 1px solid;
+  border-color: var(--color-button-shadow) var(--color-button-highlight) var(--color-button-highlight) var(--color-button-shadow);
+  padding: 1px 4px;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+}
+
+.theme-doc-markdown pre {
+  background: var(--input-background);
+  border: 2px solid;
+  border-color: var(--color-button-shadow) var(--color-button-highlight) var(--color-button-highlight) var(--color-button-shadow);
+  padding: 8px;
+}
+
+.theme-doc-markdown pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.theme-doc-markdown table {
+  border-collapse: collapse;
+  border: 1px solid var(--color-button-shadow);
+}
+
+.theme-doc-markdown th,
+.theme-doc-markdown td {
+  border: 1px solid var(--color-button-shadow);
+  padding: 4px 8px;
+}
+
+.theme-doc-markdown th {
+  background: var(--color-button-face);
+  font-weight: bold;
+}
+
+.theme-doc-markdown img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.button {
+  background: var(--color-button-face);
+  color: var(--color-window-text);
+  border: 2px solid;
+  border-color: var(--color-button-highlight) var(--color-button-shadow) var(--color-button-shadow) var(--color-button-highlight);
+  border-radius: 0;
+  padding: 4px 12px;
+  font-family: var(--ifm-font-family-base);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-button-highlight);
+}
+
+.button:active {
+  border-color: var(--color-button-shadow) var(--color-button-highlight) var(--color-button-highlight) var(--color-button-shadow);
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-button-face);
+  border: 1px solid;
+  border-color: var(--color-button-shadow) var(--color-button-highlight) var(--color-button-highlight) var(--color-button-shadow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-button-face);
+  border: 2px solid;
+  border-color: var(--color-button-highlight) var(--color-button-shadow) var(--color-button-shadow) var(--color-button-highlight);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-button-highlight);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-button-face);
+}
+
+* {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizespeed;
+}
+
+* {
+  transition: none !important;
+  animation: none !important;
+}
+
+[data-theme='dark'] .navbar {
+  background: #1a1a2e !important;
+  border-bottom: 1px solid #0a0a15;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background: #1a1a2e !important;
+  border-right: 1px solid #0a0a15;
+}
+
+[data-theme='dark'] .menu__link {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background: #000080;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .theme-doc-markdown {
+  background: #1a1a2e;
+  color: #ffffff;
+  border-color: #0a0a15 #404050 #404050 #0a0a15;
+}
+
+[data-theme='dark'] .theme-doc-markdown h1,
+[data-theme='dark'] .theme-doc-markdown h2,
+[data-theme='dark'] .theme-doc-markdown h3,
+[data-theme='dark'] .theme-doc-markdown h4,
+[data-theme='dark'] .theme-doc-markdown h5,
+[data-theme='dark'] .theme-doc-markdown h6 {
+  color: #ffffff;
+  border-bottom: 1px solid #404050;
 }

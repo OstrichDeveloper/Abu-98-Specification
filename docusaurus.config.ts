@@ -111,7 +111,7 @@ const config: Config = {
           label: 'Shared',
         },
         {
-          to: '/demo.html',
+          to: '/demo',
           label: 'Demo',
           position: 'right',
         },
