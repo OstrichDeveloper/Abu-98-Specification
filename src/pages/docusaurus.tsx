@@ -6,3 +6,4 @@ export default function DocusaurusPage(): JSX.Element {
   // Redirect to the docs intro page
   return <Redirect to="/docs/intro" />;
 }
+

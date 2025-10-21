@@ -796,3 +796,4 @@ if (!checkBrowserSupport()) {
 This API reference provides comprehensive documentation for the Windows 98 Help System implementation. The API is designed to be intuitive, type-safe, and powerful, enabling developers to create rich help system experiences while maintaining the authentic Windows 98 feel.
 
 The API supports both simple use cases and advanced scenarios, with extensive configuration options and event handling capabilities. All methods are well-documented with TypeScript types, making development easier and more reliable.
+

@@ -226,3 +226,4 @@ export function isContentMetadata(obj: any): obj is ContentMetadata {
     Array.isArray(obj.tags) &&
     ['beginner', 'intermediate', 'advanced'].includes(obj.difficulty);
 }
+

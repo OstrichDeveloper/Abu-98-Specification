@@ -53,3 +53,4 @@ export const CONTENT_PROCESSING_CONSTANTS = {
   SUPPORTED_FILE_TYPES: ['.md', '.mdx'],
   SUPPORTED_LANGUAGES: ['javascript', 'typescript', 'html', 'css', 'json', 'markdown']
 } as const;
+

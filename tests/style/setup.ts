@@ -44,3 +44,4 @@ afterAll(() => {
   delete (global as any).getComputedStyle;
   delete (global as any).simulateEvent;
 });
+
