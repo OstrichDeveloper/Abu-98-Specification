@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abu OS 98 Demo</title>
+  <meta name="description" content="Windows 98 F1 Help System Demo - Experience the authentic Windows 98 interface">
+  
+  <!-- Web Kernel Styles -->
+  <link rel="stylesheet" href="/Abu-98-Specification/web-kernel/index.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'MS Sans Serif', Arial, sans-serif;
+    }
+
+    #app {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Loading screen */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: #008080;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <div>Loading Abu OS 98 Demo...</div>
+    </div>
+  </div>
+  
+  <!-- Web Kernel Scripts -->
+  <script type="module">
+    import { 
+      Shell, 
+      pluginRegistry, 
+      MockKernel,
+      desktop,
+      windowManager,
+      mount,
+      HelpSystem
+    } from '/Abu-98-Specification/web-kernel/index.js';
+    
+    // Create the Help System plugin
+    const helpSystemPlugin = {
+      id: 'help-system',
+      name: 'Help Topics',
+      version: '1.0.0',
+      component: HelpSystem,
+      defaultTitle: 'Help Topics',
+      defaultIcon: 'icon-help-book',
+      defaultSize: {
+        width: 800,
+        height: 600
+      },
+      isResizable: true,
+      onInstall: () => {
+        console.log('✓ Help System plugin installed');
+      },
+      onUninstall: () => {
+        console.log('✗ Help System plugin uninstalled');
+      }
+    };
+
+    // Initialize the application
+    function initializeApp() {
+      console.log('🚀 Initializing Abu OS 98 Demo...');
+
+      const kernel = new MockKernel();
+      console.log('✓ Mock kernel created');
+
+      mount(Shell, {
+        target: document.getElementById('app'),
+        props: {
+          plugins: [helpSystemPlugin],
+          kernel: kernel
+        }
+      });
+      console.log('✓ Shell mounted successfully');
+
+      // Add desktop icon for Help System
+      desktop.addItem({
+        id: 'help-system-icon',
+        label: 'Help Topics',
+        iconClass: 'icon-help-book',
+        type: 'program',
+        action: () => {
+          console.log('Opening Help System window...');
+          windowManager.open('help-system');
+        }
+      });
+      console.log('✓ Desktop icon added');
+
+      // Open Help System window on first launch
+      setTimeout(() => {
+        if (windowManager.count === 0) {
+          console.log('Opening Help System window (first launch)...');
+          windowManager.open('help-system');
+        }
+      }, 100);
+
+      console.log('✅ Abu OS 98 Demo initialized successfully!');
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
+    }
+  </script>
+</body>
+</html>

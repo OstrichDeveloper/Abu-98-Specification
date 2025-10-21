@@ -47,11 +47,18 @@ const config: Config = {
           editUrl: 'https://github.com/melalawi/Abu-Specification/tree/main/',
         },
         blog: false,
+        pages: {
+          path: 'src/pages',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
+  ],
+
+  plugins: [
+    './src/plugins/dual-architecture-plugin.js',
   ],
 
   themeConfig: {
@@ -102,6 +109,11 @@ const config: Config = {
           sidebarId: 'sharedSidebar',
           position: 'left',
           label: 'Shared',
+        },
+        {
+          to: '/demo.html',
+          label: 'Demo',
+          position: 'right',
         },
         {
           href: 'https://github.com/melalawi/Abu-Specification',

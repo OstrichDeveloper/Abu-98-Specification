@@ -213,6 +213,30 @@ describe('TopicBuilder', () => {
       expect(topic.metadata.codeBlocks).toHaveLength(1);
     });
 
+    it('should use custom ID strategy', () => {
+      const builder = new TopicBuilder({ idStrategy: 'custom' });
+      const parsedContent: ParsedContent = {
+        path: 'test.md',
+        html: '<h1>Test Document</h1>',
+        metadata: {
+          title: 'Test Document',
+          category: 'test',
+          tags: [],
+          difficulty: 'beginner'
+        },
+        toc: [],
+        searchableText: 'Test Document content',
+        internalLinks: [],
+        externalLinks: [],
+        images: [],
+        codeBlocks: []
+      };
+
+      const topic = (builder as any).buildTopic(parsedContent);
+      
+      expect(topic.id).toBe('test-test-document');
+    });
+
     it('should use default values when metadata is missing', () => {
       const parsedContent: ParsedContent = {
         path: 'test.md',

@@ -1,15 +1,26 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import HelpSystem from '@site/src/components/HelpSystem';
+import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import Heading from '@theme/Heading';
 
 export default function Home(): JSX.Element {
   return (
     <Layout
-      title="Abu OS 98 Help System"
-      description="Windows 98 F1 Help System for Abu OS Documentation"
+      title="Abu OS Documentation"
+      description="Comprehensive documentation for the Abu OS 98 ecosystem"
     >
-      <div style={{ height: '100vh', width: '100vw', margin: 0, padding: 0 }}>
-        <HelpSystem />
+      <div className="container margin-vert--lg">
+        <div className="row">
+          <div className="col col--8 col--offset-2">
+            <div className="text--center margin-bottom--lg">
+              <Heading as="h1">Welcome to Abu OS Documentation</Heading>
+              <p className="hero__subtitle">
+                Complete documentation for the Abu OS 98 ecosystem including Web Kernel, Enterprise, and Service components.
+              </p>
+            </div>
+            <HomepageFeatures />
+          </div>
+        </div>
       </div>
     </Layout>
   );

@@ -1,75 +1,53 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 interface HelpSystemProps {
   className?: string;
 }
 
-function HelpSystemInner({ className = '' }: HelpSystemProps): JSX.Element {
+function HelpSystemInner({ className = '' }: HelpSystemProps): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Dynamically import the Web Kernel components to avoid SSR issues
-    const initializeWebKernel = async () => {
-      try {
-        const { Shell, MockKernel, mount, pluginRegistry, HelpSystem: HelpSystemComponent } = await import('@melalawi/abu-web-kernel');
+    // Create an iframe to load the Web Kernel demo as a standalone app
+    const iframe = document.createElement('iframe');
+    
+    // Use the correct baseUrl for the iframe src
+    const baseUrl = siteConfig.baseUrl || '/';
+    iframe.src = `${baseUrl}web-kernel-demo.html`;
+    
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.background = '#c0c0c0';
+    
+    // Handle iframe load events
+    iframe.onload = () => {
+      setIsLoading(false);
+      setHasError(false);
+    };
+    
+    iframe.onerror = () => {
+      setIsLoading(false);
+      setHasError(true);
+    };
+    
+    // Clear the container and add the iframe
+    containerRef.current.innerHTML = '';
+    containerRef.current.appendChild(iframe);
 
-        // Create the Help System plugin
-        const helpSystemPlugin = {
-          id: 'help-system',
-          name: 'Help Topics',
-          version: '1.0.0',
-          component: HelpSystemComponent,
-          defaultTitle: 'Help Topics',
-          defaultIcon: 'icon-help-book',
-          defaultSize: {
-            width: 800,
-            height: 600
-          },
-          isResizable: true,
-          onInstall: () => {
-            console.log('Help System plugin installed');
-          },
-          onUninstall: () => {
-            console.log('Help System plugin uninstalled');
-          }
-        };
-
-        // Register the plugin
-        pluginRegistry.registerWindow(helpSystemPlugin);
-
-        // Create kernel instance
-        const kernel = new MockKernel();
-
-        // Mount the shell
-        mount(Shell, {
-          target: containerRef.current,
-          props: {
-            kernel,
-            plugins: [helpSystemPlugin]
-          }
-        });
-
-        // Open the help system window immediately
-        setTimeout(() => {
-          // Use the window manager to open the help system
-          const { windowManager } = require('@melalawi/abu-web-kernel');
-          windowManager.open('help-system');
-        }, 100);
-      } catch (error) {
-        console.error('Failed to initialize Web Kernel:', error);
+    return () => {
+      if (iframe.parentNode) {
+        iframe.parentNode.removeChild(iframe);
       }
     };
-
-    initializeWebKernel();
-
-    // Cleanup is handled by Svelte's unmount
-    return () => {
-      // No explicit cleanup needed as Svelte handles it
-    };
-  }, []);
+  }, [siteConfig.baseUrl]);
 
   return (
     <div 
@@ -78,13 +56,48 @@ function HelpSystemInner({ className = '' }: HelpSystemProps): JSX.Element {
       style={{ 
         width: '100%', 
         height: '100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        background: '#c0c0c0',
+        fontFamily: 'MS Sans Serif, sans-serif',
+        position: 'relative'
       }}
-    />
+    >
+      {isLoading && (
+        <div className="loading" style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '14px',
+          color: '#000',
+          zIndex: 10
+        }}>
+          Loading Abu OS 98 Demo...
+        </div>
+      )}
+      
+      {hasError && (
+        <div className="error" style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '14px',
+          color: '#ff0000',
+          textAlign: 'center',
+          zIndex: 10
+        }}>
+          <div>Failed to load Abu OS 98 Demo</div>
+          <div style={{ fontSize: '12px', marginTop: '8px' }}>
+            Please check that the Web Kernel assets are available
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
-export default function HelpSystem(props: HelpSystemProps): JSX.Element {
+export default function HelpSystem(props: HelpSystemProps): React.JSX.Element {
   return (
     <BrowserOnly fallback={<div>Loading Help System...</div>}>
       {() => <HelpSystemInner {...props} />}

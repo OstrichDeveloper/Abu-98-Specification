@@ -330,6 +330,34 @@ describe('ContentRegistry', () => {
     });
   });
 
+  describe('findTopicByPath', () => {
+    it('should find topic by path', () => {
+      const mockTopic: HelpTopic = {
+        id: 'test-path',
+        title: 'Test Topic',
+        category: 'test',
+        tags: ['test'],
+        difficulty: 'beginner',
+        order: 1,
+        lastModified: new Date(),
+        content: 'Test content',
+        metadata: {}
+      };
+
+      registry.topics.set('test-path', mockTopic);
+      
+      // Mock the builder's generateIdFromPath method
+      const mockBuilder = {
+        generateIdFromPath: vi.fn().mockReturnValue('test-path')
+      };
+      registry.builder = mockBuilder as any;
+
+      const topic = registry.getTopic('test-path');
+      expect(topic).toBeDefined();
+      expect(topic!.id).toBe('test-path');
+    });
+  });
+
   describe('getTopicsByCategory', () => {
     beforeEach(async () => {
       const mockCategory: HelpCategory = {

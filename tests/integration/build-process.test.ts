@@ -24,7 +24,6 @@ vi.mock('fs-extra', () => ({
 
 describe('Build Process Integration', () => {
   const projectRoot = process.cwd();
-  const buildScriptPath = join(projectRoot, 'scripts', 'build-dual.js');
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -34,55 +33,25 @@ describe('Build Process Integration', () => {
     vi.clearAllMocks();
   });
 
-  describe('Dual Architecture Build Script', () => {
-    it('should exist and be executable', () => {
-      expect(existsSync(buildScriptPath)).toBe(true);
-      
-      const stats = statSync(buildScriptPath);
-      expect(stats.isFile()).toBe(true);
-    });
-
-    it('should have correct script content structure', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify key components are present
-      expect(scriptContent).toContain('Starting dual serving architecture build');
-      expect(scriptContent).toContain('Building Web Kernel');
-      expect(scriptContent).toContain('Building Docusaurus documentation');
-      expect(scriptContent).toContain('BUILD_DIR');
-      expect(scriptContent).toContain('console.log');
-    });
-
-    it('should define correct build directories', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify directory paths are defined
-      expect(scriptContent).toContain('ROOT_DIR');
-      expect(scriptContent).toContain('WEB_KERNEL_DIR');
-      expect(scriptContent).toContain('BUILD_DIR');
-      expect(scriptContent).toContain('WEB_KERNEL_BUILD_DIR');
-      expect(scriptContent).toContain('webKernelAssetsDir');
-    });
-  });
 
   describe('Package.json Build Scripts', () => {
-    it('should have dual build script defined', () => {
+    it('should have build scripts defined', () => {
       const packageJsonPath = join(projectRoot, 'package.json');
       const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
       
       expect(packageJson.scripts).toBeDefined();
-      expect(packageJson.scripts['build:dual']).toBe('node scripts/build-dual.js');
-      expect(packageJson.scripts['build:web-kernel']).toBe('cd ../Abu-98-OS-Web-Kernel && npm run build');
+      expect(packageJson.scripts['build']).toBe('docusaurus build');
+      expect(packageJson.scripts['dev']).toBe('docusaurus start');
     });
 
     it('should have test scripts defined', () => {
       const packageJsonPath = join(projectRoot, 'package.json');
       const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
       
-      expect(packageJson.scripts.test).toBe('vitest');
-      expect(packageJson.scripts['test:run']).toBe('vitest run');
-      expect(packageJson.scripts['test:coverage']).toBe('vitest run --coverage');
-      expect(packageJson.scripts['test:watch']).toBe('vitest --watch');
+      expect(packageJson.scripts.test).toBe('npm run test:unit && npm run test:integration && npm run test:e2e');
+      expect(packageJson.scripts['test:unit']).toBe('vitest run --coverage');
+      expect(packageJson.scripts['test:integration']).toBe('vitest run --coverage');
+      expect(packageJson.scripts['test:e2e']).toBe('playwright test --config playwright.config.ts');
     });
   });
 
@@ -96,7 +65,7 @@ describe('Build Process Integration', () => {
         // Verify key workflow components
         expect(workflowContent).toContain('Deploy Dual Serving Architecture');
         expect(workflowContent).toContain('mainline');
-        expect(workflowContent).toContain('npm run build:dual');
+        expect(workflowContent).toContain('npm run build');
         expect(workflowContent).toContain('Build dual architecture');
         expect(workflowContent).toContain('actions/deploy-pages@v4');
       }
@@ -135,8 +104,8 @@ describe('Build Process Integration', () => {
       
       if (existsSync(indexPagePath)) {
         const indexContent = readFileSync(indexPagePath, 'utf-8');
-        expect(indexContent).toContain('HelpSystem');
-        expect(indexContent).toContain('Windows 98 F1 Help System');
+        expect(indexContent).toContain('Welcome to Abu OS Documentation');
+        expect(indexContent).toContain('HomepageFeatures');
       }
       
       if (existsSync(docusaurusPagePath)) {
@@ -153,7 +122,7 @@ describe('Build Process Integration', () => {
       const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
       
       expect(packageJson.dependencies).toBeDefined();
-      expect(packageJson.dependencies['@melalawi/abu-web-kernel']).toBe('file:../Abu-98-OS-Web-Kernel');
+      expect(packageJson.dependencies['@melalawi/abu-web-kernel']).toBe('^1.0.1');
     });
 
     it('should have HelpSystem component integration', () => {
@@ -162,10 +131,10 @@ describe('Build Process Integration', () => {
       if (existsSync(helpSystemPath)) {
         const helpSystemContent = readFileSync(helpSystemPath, 'utf-8');
         
-        // Verify Web Kernel integration
-        expect(helpSystemContent).toContain('@melalawi/abu-web-kernel');
-        expect(helpSystemContent).toContain('Shell');
-        expect(helpSystemContent).toContain('MockKernel');
+        // Verify iframe-based Web Kernel integration
+        expect(helpSystemContent).toContain('iframe');
+        expect(helpSystemContent).toContain('web-kernel-demo.html');
+        expect(helpSystemContent).toContain('useDocusaurusContext');
         expect(helpSystemContent).toContain('HelpSystem');
         expect(helpSystemContent).toContain('BrowserOnly');
       }
@@ -234,55 +203,11 @@ describe('Build Process Integration', () => {
       }
     });
 
-    it('should have architecture documentation', () => {
+    it('should have documentation', () => {
       const projectRoot = process.cwd();
       
-      expect(existsSync(join(projectRoot, 'DUAL-SERVING-ARCHITECTURE.md'))).toBe(true);
       expect(existsSync(join(projectRoot, 'README.md'))).toBe(true);
     });
   });
 
-  describe('Build Output Structure', () => {
-    it('should define correct build output directories', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify build output structure
-      expect(scriptContent).toContain('BUILD_DIR');
-      expect(scriptContent).toContain('web-kernel');
-      expect(scriptContent).toContain('index.html');
-      expect(scriptContent).toContain('assets');
-    });
-
-    it('should handle build cleanup', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify cleanup operations
-      expect(scriptContent).toContain('rmSync');
-      expect(scriptContent).toContain('mkdirSync');
-      expect(scriptContent).toContain('copyDirectory');
-      expect(scriptContent).toContain('copy');
-    });
-  });
-
-  describe('Error Handling in Build Process', () => {
-    it('should handle build failures gracefully', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify error handling
-      expect(scriptContent).toContain('try');
-      expect(scriptContent).toContain('catch');
-      expect(scriptContent).toContain('process.exit(1)');
-      expect(scriptContent).toContain('console.error');
-    });
-
-    it('should provide build status feedback', () => {
-      const scriptContent = readFileSync(buildScriptPath, 'utf-8');
-      
-      // Verify status logging
-      expect(scriptContent).toContain('console.log');
-      expect(scriptContent).toContain('Building Web Kernel');
-      expect(scriptContent).toContain('Building Docusaurus');
-      expect(scriptContent).toContain('build complete');
-    });
-  });
 });

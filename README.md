@@ -2,14 +2,14 @@
 
 > Comprehensive documentation for the Abu OS 98 ecosystem
 
-This website features a **dual serving architecture** that provides both a Windows 98 F1 Help System experience and traditional Docusaurus documentation.
+This website features a **dual serving architecture** that provides both traditional Docusaurus documentation and a Windows 98 F1 Help System demo.
 
 ## Architecture
 
-- **Web Kernel Help System** (`/`) - Windows 98 F1 Help System interface built with the Abu Web Kernel
-- **Docusaurus Documentation** (`/docs/*`) - Traditional documentation website built with Docusaurus
+- **Docusaurus Documentation** (`/`) - Main documentation website built with Docusaurus
+- **Web Kernel Demo** (`/demo`) - Windows 98 F1 Help System demo built with the Abu Web Kernel
 
-See [DUAL-SERVING-ARCHITECTURE.md](./DUAL-SERVING-ARCHITECTURE.md) for detailed information about the dual serving architecture.
+See [Dual Serving Architecture](./docs/metadata/dual-serving-architecture.md) for detailed information about the dual serving architecture.
 
 ## Installation
 
@@ -19,11 +19,32 @@ npm install
 
 ## Local Development
 
+### Standard Development
+
 ```bash
-npm start
+npm run dev
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Development with Local Web Kernel
+
+For development with the local Web Kernel (real-time testing):
+
+```bash
+# Setup local linking (one-time setup)
+./scripts/setup-local-linking.sh
+
+# Terminal 1: Web Kernel watch mode
+cd ../Abu-98-OS-Web-Kernel
+npm run dev
+
+# Terminal 2: Abu-Specification dev server
+cd Abu-Specification
+npm run dev
+```
+
+See [Local Linking Development Workflow](./docs/development/local-linking.md) for detailed instructions.
 
 ## Build
 

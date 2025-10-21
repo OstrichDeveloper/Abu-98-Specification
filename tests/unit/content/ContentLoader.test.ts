@@ -44,6 +44,22 @@ describe('ContentLoader', () => {
   });
 
   describe('loadAllContent', () => {
+    it('should handle load errors gracefully', async () => {
+      // Mock fetch to throw an error for all requests
+      (global.fetch as any).mockImplementation(() => {
+        throw new Error('Network error');
+      });
+
+      const loader = new ContentLoader();
+      const result = await loader.loadAllContent();
+
+      // Should have multiple errors since it tries to load multiple files
+      expect(result.errors.length).toBeGreaterThan(0);
+      expect(result.errors[0].type).toBe('load');
+      expect(result.errors[0].message).toContain('Failed to load file');
+      expect(result.errors[0].message).toContain('Network error');
+    });
+
     it('should load all content files successfully', async () => {
       // Mock successful fetch responses
       (global.fetch as any).mockImplementation((url: string) => {

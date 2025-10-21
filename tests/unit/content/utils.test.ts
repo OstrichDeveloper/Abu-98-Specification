@@ -14,6 +14,11 @@ import {
   formatFileSize,
   formatProcessingTime
 } from '../../../src/lib/content/utils.js';
+import {
+  isContentFile,
+  isParsedContent,
+  isContentMetadata
+} from '../../../src/lib/content/types.js';
 import type { ContentFile, ParsedContent, HelpTopic, HelpCategory } from '../../../src/lib/content/types.js';
 
 // Mock the dependencies
@@ -209,6 +214,25 @@ describe('Content Processing Utils', () => {
 
       expect(result.isValid).toBe(false);
       expect(result.errors).toContain('File path is required');
+    });
+
+    it('should handle edge case with empty content', () => {
+      const contentFile: ContentFile = {
+        path: 'test.md',
+        content: '',
+        metadata: {
+          title: 'Test Title',
+          category: 'test',
+          tags: ['test'],
+          difficulty: 'beginner'
+        },
+        lastModified: new Date()
+      };
+
+      const result = validateContentFile(contentFile);
+
+      expect(result.isValid).toBe(false);
+      expect(result.errors).toContain('File content is required');
     });
 
     it('should reject content file with missing content', () => {
@@ -608,6 +632,84 @@ Content.`;
       expect(formatProcessingTime(1500)).toBe('1.5s');
       expect(formatProcessingTime(60000)).toBe('1.0m');
       expect(formatProcessingTime(90000)).toBe('1.5m');
+    });
+  });
+
+  describe('type guards', () => {
+    it('should validate ContentFile objects', () => {
+      const validContentFile = {
+        path: 'test.md',
+        content: 'Test content',
+        metadata: {
+          title: 'Test',
+          category: 'test',
+          tags: ['test'],
+          difficulty: 'beginner'
+        },
+        lastModified: new Date()
+      };
+
+      const invalidContentFile = {
+        path: 'test.md',
+        content: 'Test content',
+        metadata: null,
+        lastModified: new Date()
+      };
+
+      expect(isContentFile(validContentFile)).toBe(true);
+      expect(isContentFile(invalidContentFile)).toBeFalsy();
+      expect(isContentFile(null)).toBeFalsy();
+    });
+
+    it('should validate ParsedContent objects', () => {
+      const validParsedContent = {
+        path: 'test.md',
+        html: '<h1>Test</h1>',
+        metadata: {
+          title: 'Test',
+          category: 'test',
+          tags: ['test'],
+          difficulty: 'beginner'
+        },
+        toc: [],
+        searchableText: 'Test content',
+        internalLinks: [],
+        externalLinks: [],
+        images: [],
+        codeBlocks: []
+      };
+
+      const invalidParsedContent = {
+        path: 'test.md',
+        html: '<h1>Test</h1>',
+        metadata: null,
+        toc: [],
+        searchableText: 'Test content'
+      };
+
+      expect(isParsedContent(validParsedContent)).toBe(true);
+      expect(isParsedContent(invalidParsedContent)).toBeFalsy();
+      expect(isParsedContent(null)).toBeFalsy();
+    });
+
+    it('should validate ContentMetadata objects', () => {
+      const validMetadata = {
+        title: 'Test',
+        category: 'test',
+        tags: ['test'],
+        difficulty: 'beginner'
+      };
+
+      const invalidMetadata = {
+        title: 'Test',
+        category: 'test',
+        tags: ['test'],
+        difficulty: 'invalid'
+      };
+
+      expect(isContentMetadata(validMetadata)).toBe(true);
+      expect(isContentMetadata(invalidMetadata)).toBe(false);
+      expect(isContentMetadata(null)).toBeFalsy();
     });
   });
 });

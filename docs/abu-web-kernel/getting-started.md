@@ -64,6 +64,20 @@ npm run test:integration  # Run integration tests
 npm run test:all   # Run all tests
 ```
 
+## Local Development with Abu-Specification
+
+For development with Abu-Specification, use local linking:
+
+```bash
+# In Abu-98-OS-Web-Kernel directory
+npm link
+
+# In Abu-Specification directory  
+npm link @melalawi/abu-web-kernel
+```
+
+This allows real-time development and testing of kernel changes in the specification site.
+
 ## Next Steps
 
 - Explore the [Component Library](../design/components/)

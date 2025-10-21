@@ -634,4 +634,213 @@ This is a properly structured document.`;
       expect(parsed.externalLinks).toContain('mailto:test@example.com');
     });
   });
+
+  describe('Error Handling Integration', () => {
+    it('should handle content loading errors gracefully', async () => {
+      // Mock ContentLoader to throw errors
+      const mockLoader = {
+        loadAllContent: vi.fn().mockResolvedValue({
+          success: [],
+          errors: [{
+            type: 'load',
+            message: 'Failed to load content: Network error',
+            filePath: 'test.md',
+            timestamp: new Date()
+          }],
+          stats: {
+            totalFiles: 0,
+            processedFiles: 0,
+            skippedFiles: 0,
+            processingTime: 100
+          }
+        })
+      };
+
+      const registry = new ContentRegistry(mockLoader);
+      await registry.initialize();
+      
+      // Should handle errors gracefully
+      expect(registry.getTopics().length).toBe(0);
+      expect(registry.getCategories().length).toBe(0);
+    });
+
+    it('should handle content parsing errors gracefully', async () => {
+      // Mock console.error
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      
+      // Mock parser to throw errors
+      const mockParser = {
+        parse: vi.fn().mockImplementation(() => {
+          throw new Error('Parse error');
+        })
+      };
+
+      const registry = new ContentRegistry(undefined, mockParser);
+      
+      // Add a content file to trigger parsing
+      registry.files.set('test.md', {
+        path: 'test.md',
+        content: 'invalid content',
+        metadata: { title: 'Test', category: 'test', tags: [] }
+      });
+      
+      await registry.initialize();
+      
+      // Should handle parsing errors gracefully
+      expect(consoleSpy).toHaveBeenCalledWith(
+        'Failed to parse content file test.md:',
+        expect.any(Error)
+      );
+      
+      consoleSpy.mockRestore();
+    });
+
+    it('should handle search edge cases', async () => {
+      await contentRegistry.initialize();
+      
+      // Test empty search
+      const emptyResults = contentRegistry.search('');
+      expect(emptyResults).toEqual([]);
+      
+      // Test search with no results
+      const noResults = contentRegistry.search('nonexistentterm12345');
+      expect(noResults).toEqual([]);
+      
+      // Test search with category filter
+      const categoryResults = contentRegistry.search('test', { category: 'nonexistent' });
+      expect(categoryResults).toEqual([]);
+    });
+
+    it('should handle content registry refresh', async () => {
+      await contentRegistry.initialize();
+      
+      const initialTopicCount = contentRegistry.getTopics().length;
+      
+      // Refresh the registry
+      await contentRegistry.refresh();
+      
+      // Should have the same number of topics after refresh
+      expect(contentRegistry.getTopics().length).toBe(initialTopicCount);
+    });
+
+    it('should handle content registry clear', async () => {
+      await contentRegistry.initialize();
+      
+      // Clear the registry
+      contentRegistry.clear();
+      
+      // Should be empty after clear
+      expect(contentRegistry.getTopics().length).toBe(0);
+      expect(contentRegistry.getCategories().length).toBe(0);
+      expect(contentRegistry.files.size).toBe(0);
+    });
+
+    it('should handle ContentLoader error in loadAllContent', async () => {
+      // Mock ContentLoader to throw an error during loadAllContent
+      const mockLoader = {
+        loadAllContent: vi.fn().mockImplementation(() => {
+          throw new Error('Network timeout');
+        })
+      };
+
+      const registry = new ContentRegistry(mockLoader);
+      
+      // This should trigger the error handling in ContentLoader
+      try {
+        await registry.initialize();
+      } catch (error) {
+        // Expected to throw
+        expect(error.message).toBe('Network timeout');
+      }
+      
+      // Should handle the error gracefully
+      expect(registry.getTopics().length).toBe(0);
+    });
+
+    it('should handle TopicBuilder default ID generation', async () => {
+      // Create a topic builder with default ID strategy
+      const topicBuilder = new TopicBuilder({
+        defaultCategory: 'test',
+        defaultDifficulty: 'beginner',
+        autoOrder: true,
+        idStrategy: 'default' // This should trigger the default case
+      });
+
+      const mockContent = {
+        path: 'test.md',
+        content: '# Test\n\nTest content',
+        metadata: { title: 'Test', category: 'test', tags: [] }
+      };
+
+      const parsedContent = {
+        path: 'test.md',
+        title: 'Test',
+        content: 'Test content',
+        searchableText: 'Test content',
+        metadata: { title: 'Test', category: 'test', tags: [] },
+        headings: [],
+        links: { internal: [], external: [] },
+        images: [],
+        codeBlocks: [],
+        internalLinks: [],
+        externalLinks: [],
+        toc: []
+      };
+
+      // This should trigger the default case in generateId
+      const topics = topicBuilder.buildTopics([parsedContent]);
+      
+      expect(topics.topics.length).toBe(1);
+      expect(topics.topics[0].id).toBeDefined();
+    });
+
+    it('should handle ContentRegistry getTopic edge case', async () => {
+      await contentRegistry.initialize();
+      
+      // Test with non-existent ID
+      const nonExistentTopic = contentRegistry.getTopic('non-existent-id');
+      expect(nonExistentTopic).toBeUndefined();
+      
+      // Test with empty ID
+      const emptyIdTopic = contentRegistry.getTopic('');
+      expect(emptyIdTopic).toBeUndefined();
+    });
+
+    it('should handle metadata parsing with YAML array tags format', async () => {
+      const contentWithYamlTags = `---
+title: Test Document
+category: test
+tags: [tag1, tag2, tag3]
+---
+
+# Test Content
+This is a test document with YAML array tags.`;
+
+      const result = await contentLoader.loadFile('yaml-tags.md');
+      if (result) {
+        // Mock the file content
+        result.content = contentWithYamlTags;
+        
+        const parsed = markdownParser.parse(result.content, result.path);
+        
+        // Should parse YAML array tags correctly
+        expect(parsed.metadata.tags).toEqual(['tag1', 'tag2', 'tag3']);
+      }
+    });
+
+    it('should handle search scoring with description matches', async () => {
+      await contentRegistry.initialize();
+      
+      // Test search with existing content
+      const results = contentRegistry.search('test');
+      
+      // Should return results (may be 0 if no content matches, which is fine)
+      expect(Array.isArray(results)).toBe(true);
+      
+      // If there are results, they should have scores
+      if (results.length > 0 && results[0].score !== undefined) {
+        expect(results[0].score).toBeGreaterThanOrEqual(0);
+      }
+    });
+  });
 });

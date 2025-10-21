@@ -8,12 +8,13 @@ test.describe('Abu Specification Documentation', () => {
   test('should load the documentation site', async ({ page }) => {
     await page.goto('/');
     
-    // Check that the page loads
-    await expect(page).toHaveTitle(/Abu Specification/);
+    // Should load the main documentation homepage
+    await expect(page).toHaveTitle(/Abu OS Documentation/);
+    await expect(page.locator('h1')).toContainText('Welcome to Abu OS Documentation');
   });
 
   test('should have navigation working', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/docs/intro');
     
     // Wait for page to load
     await page.waitForLoadState('networkidle');
@@ -27,7 +28,7 @@ test.describe('Abu Specification Documentation', () => {
   });
 
   test('should have search functionality', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/docs/intro');
     
     // Look for search input
     const searchInput = page.locator('input[type="search"]').first();
@@ -38,17 +39,16 @@ test.describe('Abu Specification Documentation', () => {
     }
   });
 
-  test('should have help system integration', async ({ page }) => {
+  test('should have demo link in navigation', async ({ page }) => {
     await page.goto('/');
     
-    // Check for Abu Web Kernel help system
-    const hasHelpSystem = await page.evaluate(() => {
-      return document.querySelector('[data-abu-help]') !== null ||
-             document.querySelector('.help-system') !== null;
-    });
+    // Wait for page to load
+    await page.waitForLoadState('networkidle');
     
-    // This might not be present, so we just check the page loads
-    expect(true).toBe(true);
+        // Check for demo link in navigation
+        const demoLink = page.locator('a[href="/demo.html"]');
+        await expect(demoLink).toBeVisible();
+        await expect(demoLink).toHaveText('Demo');
   });
 
   test('should have proper content structure', async ({ page }) => {
@@ -64,3 +64,4 @@ test.describe('Abu Specification Documentation', () => {
     expect(hasContent).toBe(true);
   });
 });
+
