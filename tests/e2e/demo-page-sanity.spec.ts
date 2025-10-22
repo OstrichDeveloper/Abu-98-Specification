@@ -2,25 +2,38 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Demo Page Sanity Check', () => {
   test('demo page should load and contain demo content', async ({ page }) => {
-    await page.goto('/demo');
+    // Listen for console messages and errors
+    page.on('console', msg => console.log('BROWSER:', msg.type(), msg.text()));
+    page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
     
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
+    // Navigate to the demo page (Docusaurus uses hashed routes)
+    await page.goto('demo');
     
-    // Debug: Log the page content and title
-    const title = await page.title();
-    console.log('Page title:', title);
+    // Wait for the page to load and React to hydrate
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForSelector('#__docusaurus', { timeout: 5000 });
     
-    const content = await page.content();
-    console.log('Page content length:', content.length);
-    console.log('Page content preview:', content.substring(0, 500));
+    // Wait for the content to be rendered
+    await page.waitForSelector('h1', { timeout: 10000 });
     
-    // Check that the page loaded successfully (not a 404)
-    expect(title).not.toContain('Page Not Found');
-    expect(title).toContain('Abu OS 98 Demo');
+    // Check the h1 content
+    const h1Text = await page.locator('h1').first().textContent();
+    console.log('H1 text:', h1Text);
+    
+    // Check if it's the demo page or 404
+    if (h1Text && h1Text.includes('Page Not Found')) {
+      // Get the current URL to help debug
+      const url = page.url();
+      console.log('Current URL:', url);
+      throw new Error(`Demo page returned 404 at ${url}. The React page may not be compiled correctly.`);
+    }
     
     // Check that we have the demo content
     await expect(page.locator('h1')).toContainText('Abu OS 98 Demo');
-    await expect(page.locator('p')).toContainText('This is a test of the React page without iframe.');
+    await expect(page.locator('p')).toContainText('This is a test of the React page with Layout.');
+    
+    // Check the title after React has rendered
+    const title = await page.title();
+    expect(title).toContain('Abu OS 98 Demo');
   });
 });

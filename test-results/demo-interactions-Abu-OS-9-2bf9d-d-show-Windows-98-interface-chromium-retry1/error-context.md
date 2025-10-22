@@ -33,45 +33,43 @@
           - img "(opens in new tab)" [ref=e20]
         - button "Switch between dark and light mode (currently system mode)" [ref=e23]:
           - img [ref=e24]
-  - main [ref=e27]:
-    - generic [ref=e29]:
-      - heading "Page Not Found" [level=1] [ref=e30]
-      - paragraph [ref=e31]: We could not find what you were looking for.
-      - paragraph [ref=e32]: Please contact the owner of the site that linked you to the original URL and let them know their link is broken.
-  - contentinfo [ref=e33]:
-    - generic [ref=e34]:
-      - generic [ref=e35]:
-        - generic [ref=e36]:
-          - generic [ref=e37]: Documentation
-          - list [ref=e38]:
-            - listitem [ref=e39]:
-              - link "Design System" [ref=e40]:
+  - generic [ref=e27]:
+    - heading "Abu OS 98 Demo" [level=1] [ref=e28]
+    - paragraph [ref=e29]: This is a test of the React page with Layout.
+  - contentinfo [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: Documentation
+          - list [ref=e35]:
+            - listitem [ref=e36]:
+              - link "Design System" [ref=e37]:
                 - /url: /Abu-98-Specification/docs/design
-            - listitem [ref=e41]:
-              - link "Specifications" [ref=e42]:
+            - listitem [ref=e38]:
+              - link "Specifications" [ref=e39]:
                 - /url: /Abu-98-Specification/docs/specifications
-        - generic [ref=e43]:
-          - generic [ref=e44]: Packages
-          - list [ref=e45]:
-            - listitem [ref=e46]:
-              - link "Web Kernel" [ref=e47]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: Packages
+          - list [ref=e42]:
+            - listitem [ref=e43]:
+              - link "Web Kernel" [ref=e44]:
                 - /url: /Abu-98-Specification/docs/abu-web-kernel
-            - listitem [ref=e48]:
-              - link "Enterprise" [ref=e49]:
+            - listitem [ref=e45]:
+              - link "Enterprise" [ref=e46]:
                 - /url: /Abu-98-Specification/docs/abu-enterprise
-            - listitem [ref=e50]:
-              - link "Service" [ref=e51]:
+            - listitem [ref=e47]:
+              - link "Service" [ref=e48]:
                 - /url: /Abu-98-Specification/docs/abu-service
-        - generic [ref=e52]:
-          - generic [ref=e53]: Resources
-          - list [ref=e54]:
-            - listitem [ref=e55]:
-              - link "GitHub(opens in new tab)" [ref=e56]:
+        - generic [ref=e49]:
+          - generic [ref=e50]: Resources
+          - list [ref=e51]:
+            - listitem [ref=e52]:
+              - link "GitHub(opens in new tab)" [ref=e53]:
                 - /url: https://github.com/melalawi
                 - text: GitHub
-                - img "(opens in new tab)" [ref=e57]
-            - listitem [ref=e59]:
-              - link "Shared Docs" [ref=e60]:
+                - img "(opens in new tab)" [ref=e54]
+            - listitem [ref=e56]:
+              - link "Shared Docs" [ref=e57]:
                 - /url: /Abu-98-Specification/docs/shared
-      - generic [ref=e62]: Copyright © 2025 Abu OS. Built with Docusaurus.
+      - generic [ref=e59]: Copyright © 2025 Abu OS. Built with Docusaurus.
 ```

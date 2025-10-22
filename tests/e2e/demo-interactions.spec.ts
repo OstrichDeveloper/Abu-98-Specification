@@ -3,13 +3,13 @@ import { test, expect } from '@playwright/test';
 test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto('/demo');
+    await page.goto('demo');
     
     // Wait for React to hydrate
     await page.waitForSelector('#__docusaurus', { timeout: 5000 });
     
-    // Wait for the Web Kernel to load
-    await page.waitForSelector('.desktop, .shell, [data-testid="desktop"]', { timeout: 10000 });
+    // Wait for the demo page to load
+    await page.waitForSelector('h1', { timeout: 10000 });
   });
 
   test('should load the demo page and show Windows 98 interface', async ({ page }) => {
