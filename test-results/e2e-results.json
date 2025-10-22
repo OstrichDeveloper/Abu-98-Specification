@@ -1,0 +1,2169 @@
+{
+  "config": {
+    "configFile": "/home/mo/Documents/Code/Abu-Specification/playwright.config.ts",
+    "rootDir": "/home/mo/Documents/Code/Abu-Specification/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "github",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/e2e-results.xml"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/mo/Documents/Code/Abu-Specification/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/mo/Documents/Code/Abu-Specification/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000/Abu-98-Specification/",
+      "reuseExistingServer": true,
+      "timeout": 60000,
+      "stdout": "pipe",
+      "stderr": "pipe",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "demo-interactions.spec.ts",
+      "file": "demo-interactions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Abu OS 98 Demo - Interactive Tests",
+          "file": "demo-interactions.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load the demo page and show demo content",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 13904,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:25:48.313Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14549,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:26:04.210Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 13896,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:26:20.823Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-66ecc--page-and-show-demo-content-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-86c9ec83f7c6cc6830cf",
+              "file": "demo-interactions.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should open start menu and select an option",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14006,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:26:36.738Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 13253,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:26:52.854Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14651,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:27:08.307Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-342ec-t-menu-and-select-an-option-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-30df6f86a5bb2c2bb21b",
+              "file": "demo-interactions.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "should interact with desktop icons",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14458,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:27:25.165Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14473,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:27:41.870Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14236,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:27:59.474Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-307ef-interact-with-desktop-icons-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-71febf2dc74a41aa8425",
+              "file": "demo-interactions.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should open and interact with windows",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14335,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:28:16.501Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14328,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:28:33.007Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12807,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:28:49.510Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-79b7c-n-and-interact-with-windows-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-0b39d5338c16e33ab1d4",
+              "file": "demo-interactions.spec.ts",
+              "line": 78,
+              "column": 7
+            },
+            {
+              "title": "should verify Windows 98 styling and aesthetics",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14123,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:29:04.652Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14099,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:29:20.937Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14335,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:29:37.209Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1660f-s-98-styling-and-aesthetics-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-80c06f0877f1e0c6370f",
+              "file": "demo-interactions.spec.ts",
+              "line": 150,
+              "column": 7
+            },
+            {
+              "title": "should handle window management operations",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 13590,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:29:53.721Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14376,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:30:09.502Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14235,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:30:26.064Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-81b54-indow-management-operations-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-abe9243a3ab3541fbc32",
+              "file": "demo-interactions.spec.ts",
+              "line": 185,
+              "column": 7
+            },
+            {
+              "title": "should test keyboard interactions",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14807,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:30:42.446Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14885,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:31:00.124Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14324,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:31:17.258Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-1ddae--test-keyboard-interactions-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-0aa10a2d36e02809a9ee",
+              "file": "demo-interactions.spec.ts",
+              "line": 242,
+              "column": 7
+            },
+            {
+              "title": "should handle rapid interactions and stress test",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14151,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:31:33.758Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12811,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:31:50.063Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    },
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14244,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                          "column": 16,
+                          "line": 12
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                            "column": 16,
+                            "line": 12
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     \n \u001b[90m 11 |\u001b[39m     \u001b[90m// Wait for the demo page to load\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m   test(\u001b[32m'should load the demo page and show demo content'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts:12:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:32:05.148Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-interactions-Abu-OS-9-9ddc3-nteractions-and-stress-test-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-interactions.spec.ts",
+                        "column": 16,
+                        "line": 12
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "48000c3cf713888561b4-9a88d4f21bb5d34cd231",
+              "file": "demo-interactions.spec.ts",
+              "line": 261,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "demo-page-sanity.spec.ts",
+      "file": "demo-page-sanity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Demo Page Sanity Check",
+          "file": "demo-page-sanity.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "demo page should load and contain demo content",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14304,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                          "column": 16,
+                          "line": 17
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                            "column": 16,
+                            "line": 17
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "BROWSER: info %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Mock kernel created\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Shell mounted successfully\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Desktop icon added\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Help System plugin installed\n"
+                        },
+                        {
+                          "text": "BROWSER: log Opening Help Topics window (first launch)...\n"
+                        },
+                        {
+                          "text": "PAGE ERROR: Cannot use 'in' operator to search for 'Symbol($state)' in window-1761096744428-jafnbp2yn\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:32:21.598Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                        "column": 16,
+                        "line": 17
+                      }
+                    },
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14517,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                          "column": 16,
+                          "line": 17
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                            "column": 16,
+                            "line": 17
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "BROWSER: info %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Mock kernel created\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Shell mounted successfully\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Desktop icon added\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Help System plugin installed\n"
+                        },
+                        {
+                          "text": "BROWSER: log Opening Help Topics window (first launch)...\n"
+                        },
+                        {
+                          "text": "PAGE ERROR: Cannot use 'in' operator to search for 'Symbol($state)' in window-1761096761127-xsj2b9rpl\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:32:38.186Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                        "column": 16,
+                        "line": 17
+                      }
+                    },
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 14932,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                          "column": 16,
+                          "line": 17
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                            "column": 16,
+                            "line": 17
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('h1') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Wait for the content to be rendered\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h1'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 18 |\u001b[39m     \n \u001b[90m 19 |\u001b[39m     \u001b[90m// Check the h1 content\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m h1Text \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts:17:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "BROWSER: info %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Mock kernel created\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Shell mounted successfully\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Desktop icon added\n"
+                        },
+                        {
+                          "text": "BROWSER: log ✓ Help System plugin installed\n"
+                        },
+                        {
+                          "text": "BROWSER: log Opening Help Topics window (first launch)...\n"
+                        },
+                        {
+                          "text": "PAGE ERROR: Cannot use 'in' operator to search for 'Symbol($state)' in window-1761096778675-vladukw20\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:32:54.938Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/demo-page-sanity-Demo-Page-13df8-ad-and-contain-demo-content-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/demo-page-sanity.spec.ts",
+                        "column": 16,
+                        "line": 17
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2a127013c932d6c4d016-b13e5e13a1f1763ff491",
+              "file": "demo-page-sanity.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "new-demo-test.spec.ts",
+      "file": "new-demo-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "New Demo Page Test",
+          "file": "new-demo-test.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "new demo page should load",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3295,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                          "column": 23,
+                          "line": 14
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                            "column": 23,
+                            "line": 14
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Page title: Page Not Found | Abu OS Documentation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-22T01:33:12.069Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                        "column": 23,
+                        "line": 14
+                      }
+                    },
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3049,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                          "column": 23,
+                          "line": 14
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                            "column": 23,
+                            "line": 14
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Page title: Page Not Found | Abu OS Documentation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-22T01:33:17.699Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                        "column": 23,
+                        "line": 14
+                      }
+                    },
+                    {
+                      "workerIndex": 29,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3290,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23",
+                        "location": {
+                          "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                          "column": 23,
+                          "line": 14
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                            "column": 23,
+                            "line": 14
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: not \u001b[32m\"Page Not Found\"\u001b[39m\nReceived string:        \u001b[31m\"\u001b[7mPage Not Found\u001b[27m | Abu OS Documentation\"\u001b[39m\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page title:'\u001b[39m\u001b[33m,\u001b[39m title)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     expect(title)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoContain(\u001b[32m'Page Not Found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m     \n \u001b[90m 16 |\u001b[39m     \u001b[90m// Check that we have the demo content\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'h1'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'New Demo Page'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts:14:23\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Page title: Page Not Found | Abu OS Documentation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2025-10-22T01:33:22.975Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry2/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/mo/Documents/Code/Abu-Specification/test-results/new-demo-test-New-Demo-Page-Test-new-demo-page-should-load-chromium-retry2/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/mo/Documents/Code/Abu-Specification/tests/e2e/new-demo-test.spec.ts",
+                        "column": 23,
+                        "line": 14
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c3104a5cae2730817d50-5ba270c70396682d8823",
+              "file": "new-demo-test.spec.ts",
+              "line": 4,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-22T01:25:45.901Z",
+    "duration": 460915.168,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}
