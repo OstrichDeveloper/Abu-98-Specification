@@ -10,6 +10,7 @@ export default defineConfig({
   expect: {
     timeout: 5000,
   },
+  globalSetup: require.resolve('./tests/setup/global-setup.ts'),
   reporter: [
     ['github'],
     ['json', { outputFile: 'test-results/e2e-results.json' }],

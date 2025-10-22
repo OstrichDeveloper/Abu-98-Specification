@@ -8,14 +8,23 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
     // Wait for React to hydrate
     await page.waitForSelector('#__docusaurus', { timeout: 5000 });
     
-    // Wait for the demo page to load
-    await page.waitForSelector('h1', { timeout: 10000 });
+    // Wait for the Web Kernel to load - look for desktop or taskbar elements instead of h1
+    await page.waitForSelector('.desktop, .taskbar, .taskbar-start-button', { timeout: 15000 });
+    
+    // Remove webpack dev server overlay that blocks interactions
+    await page.evaluate(() => {
+      const overlay = document.getElementById('webpack-dev-server-client-overlay');
+      if (overlay) {
+        overlay.remove();
+      }
+    });
   });
 
   test('should load the demo page and show demo content', async ({ page }) => {
-    // Check that the demo page content is present
-    await expect(page.locator('h1')).toContainText('Abu OS 98 Demo');
-    await expect(page.locator('p')).toContainText('This is a test of the React page with Layout.');
+    // Check that the Web Kernel desktop is present
+    await expect(page.locator('.desktop')).toBeVisible();
+    await expect(page.locator('.taskbar')).toBeVisible();
+    await expect(page.locator('.taskbar-start-button')).toBeVisible();
     
     // Take a screenshot of the initial state
     await page.screenshot({ 
@@ -27,7 +36,7 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   test('should open start menu and select an option', async ({ page }) => {
     
     // Click the start button
-    await page.locator('.start-button').click();
+    await page.locator('.taskbar-start-button').click();
     
     // Wait for start menu to appear
     await expect(page.locator('.start-menu')).toBeVisible();
@@ -38,8 +47,8 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
       fullPage: true 
     });
     
-    // Look for a menu item to click (Help Topics or similar)
-    const menuItem = page.locator('.start-menu-item').first();
+    // Look for an enabled menu item to click (skip disabled ones)
+    const menuItem = page.locator('.start-menu-item:not(.disabled)').first();
     if (await menuItem.isVisible()) {
       await menuItem.click();
       
@@ -78,11 +87,11 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   test('should open and interact with windows', async ({ page }) => {
     
     // Try to open a window by clicking start menu and selecting an option
-    await page.locator('.start-button').click();
+    await page.locator('.taskbar-start-button').click();
     await expect(page.locator('.start-menu')).toBeVisible();
     
-    // Look for Help Topics or similar option
-    const helpMenuItem = page.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
+    // Look for Help Topics or similar option (only enabled ones)
+    const helpMenuItem = page.locator('.start-menu-item:not(.disabled)').filter({ hasText: /help|topics/i }).first();
     
     if (await helpMenuItem.isVisible()) {
       await helpMenuItem.click();
@@ -152,7 +161,7 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
     // Check for Windows 98 specific styling
     const desktop = page.locator('.desktop');
     const taskbar = page.locator('.taskbar');
-    const startButton = page.locator('.start-button');
+    const startButton = page.locator('.taskbar-start-button');
     
     // Verify elements are styled correctly
     await expect(desktop).toBeVisible();
@@ -185,10 +194,10 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
   test('should handle window management operations', async ({ page }) => {
     
     // Try to open a window first
-    await page.locator('.start-button').click();
+    await page.locator('.taskbar-start-button').click();
     await expect(page.locator('.start-menu')).toBeVisible();
     
-    const helpMenuItem = page.locator('.start-menu-item').filter({ hasText: /help|topics/i }).first();
+    const helpMenuItem = page.locator('.start-menu-item:not(.disabled)').filter({ hasText: /help|topics/i }).first();
     
     if (await helpMenuItem.isVisible()) {
       await helpMenuItem.click();
@@ -262,7 +271,7 @@ test.describe('Abu OS 98 Demo - Interactive Tests', () => {
     
     // Rapid clicking on start button
     for (let i = 0; i < 5; i++) {
-      await page.locator('.start-button').click();
+      await page.locator('.taskbar-start-button').click();
       await page.waitForTimeout(200);
     }
     

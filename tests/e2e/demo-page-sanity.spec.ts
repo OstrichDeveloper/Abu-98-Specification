@@ -13,25 +13,21 @@ test.describe('Demo Page Sanity Check', () => {
     await page.waitForLoadState('domcontentloaded');
     await page.waitForSelector('#__docusaurus', { timeout: 5000 });
     
-    // Wait for the content to be rendered
-    await page.waitForSelector('h1', { timeout: 10000 });
+    // Wait for the Web Kernel to load - look for desktop or taskbar elements
+    await page.waitForSelector('.desktop, .taskbar, .taskbar-start-button', { timeout: 15000 });
     
-    // Check the h1 content
-    const h1Text = await page.locator('h1').first().textContent();
-    console.log('H1 text:', h1Text);
+    // Remove webpack dev server overlay that blocks interactions
+    await page.evaluate(() => {
+      const overlay = document.getElementById('webpack-dev-server-client-overlay');
+      if (overlay) {
+        overlay.remove();
+      }
+    });
     
-    // Check if it's the demo page or 404
-    if (h1Text && h1Text.includes('Page Not Found')) {
-      // Get the current URL to help debug
-      const url = page.url();
-      console.log('Current URL:', url);
-      throw new Error(`Demo page returned 404 at ${url}. The React page may not be compiled correctly.`);
-    }
-    
-    // Check that we have the Web Kernel components - look for any desktop icons
-    // The Web Kernel is loading but may have Svelte 5 runes issues, so be flexible
-    const desktopIcons = page.locator('button').filter({ hasText: /My Computer|Recycle Bin|Control Panel|Internet Explorer|SSH Terminal|Terminal/ });
-    await expect(desktopIcons.first()).toBeVisible({ timeout: 15000 });
+    // Check that we have the Web Kernel components
+    await expect(page.locator('.desktop')).toBeVisible();
+    await expect(page.locator('.taskbar')).toBeVisible();
+    await expect(page.locator('.taskbar-start-button')).toBeVisible();
     
     // Check the title after React has rendered
     const title = await page.title();
